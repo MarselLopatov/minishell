@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_srtlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 19:53:14 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/14 19:16:54 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/14 19:17:52 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minishell.h"
+#include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	t_info info;
+	size_t	index;
 
-	(void)argc;
-	(void)argv;
-	init(envp, &info);
-	while (!info.envp_f)
+	if (!size)
+		return (ft_strlen(src));
+	index = 0;
+	while (src[index] && index < size - 1)
 	{
-		
+		dst[index] = src[index];
+		index++;
 	}
+	if (size)
+		dst[index] = '\0';
+	return (ft_strlen(src));
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != 0)
+		i++;
+	return (i);
 }
