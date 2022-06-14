@@ -6,11 +6,15 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:16:28 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/13 20:47:02 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/14 17:15:58 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/minishell.h"
+
 void	init(char **enpv)
 {
-	
+	char **strs;
+	(void) enpv;
+	(void) strs;
 }
