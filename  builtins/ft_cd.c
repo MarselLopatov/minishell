@@ -1,20 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 20:16:28 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 19:02:54 by coleta           ###   ########.fr       */
+/*   Created: 2022/06/14 18:41:11 by coleta            #+#    #+#             */
+/*   Updated: 2022/06/14 19:05:24 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	init(char **enpv)
+int	change(char *pach)
 {
-	char **strs;
-	(void) enpv;
-	(void) strs;
+	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	if (!chdir(pach))
+	{
+		if (pwd)
+			; //изменить OLDPWD
+		pwd = getcwd(NULL, 0);
+		if (pwd)
+			; //изменить PWD
+		return (1);
+	}
+	return (0);
+}
+
+void	change_directory(char *pach)
+{
+	struct stat	st;
+
+	if (change(pach))
+		return ;
+	// обработка ошибки
+	//stat(pach, &st);
+}
+
+void	ft_cd()
+{
+	//выбор знаков
+	// change_directory();
 }

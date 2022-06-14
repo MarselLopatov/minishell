@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 17:22:29 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/14 19:02:56 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minishell.h"
+#include "includes/minishell.h"
 
 int	main(int argc, char **argv, char **envp)
 {

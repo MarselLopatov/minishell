@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 20:16:28 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 19:02:54 by coleta           ###   ########.fr       */
+/*   Created: 2022/06/14 19:03:50 by coleta            #+#    #+#             */
+/*   Updated: 2022/06/14 19:04:50 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef INCLUDE_H
+# define INCLUDE_H
 
-void	init(char **enpv)
-{
-	char **strs;
-	(void) enpv;
-	(void) strs;
-}
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/stat.h>
+
+#endif
