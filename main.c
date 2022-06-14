@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 17:22:29 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/14 18:43:57 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	init(envp);
+	t_info info;
+
 	(void)argc;
 	(void)argv;
+	init(envp, &info);
+
+	while (!info.envp_f)
+	{
+		
+	}
 }
