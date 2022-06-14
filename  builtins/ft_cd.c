@@ -6,7 +6,7 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:41:11 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/14 19:09:16 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/14 19:20:02 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int	change(char *pach)
 	{
 		if (pwd)
 			; //изменить OLDPWD
+			// удалить pwd
 		pwd = getcwd(NULL, 0);
 		if (pwd)
 			; //изменить PWD
+			// удалить pwd
 		return (1);
 	}
 	return (0);
