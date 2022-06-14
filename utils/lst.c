@@ -6,13 +6,13 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 19:04:17 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 19:07:05 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/14 19:32:21 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_list	*ft_lstnew(char *value, char *key)
+t_list	*ft_lstnew(void *value, void *key)
 {
 	t_list	*new;
 
