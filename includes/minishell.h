@@ -6,7 +6,7 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 20:30:36 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/15 19:54:55 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define MINISHELL_H
 
 #include "structs.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "include.h"
 
 void	init(char **enpv, t_info *info);
 
