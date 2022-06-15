@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/15 19:12:29 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/15 19:41:33 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/15 19:42:05 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minishell.h"
+#include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ft_isalpha(int c)
 {
-	t_info		info;
-	char	*line;
-
-	(void)argc;
-	(void)argv;
-	init(envp, &info);
-	while (1)
-	{
-		line = readline("minishell: ");
-		add_history(line);
-		lexer(&info, line);
-	}
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

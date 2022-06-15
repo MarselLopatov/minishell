@@ -14,7 +14,7 @@ CC				= gcc
 all		: $(NAME)
 
 $(NAME)	: $(OBJ) $(LIBFT) $(HEADER)
-			$(CC) -o $@ $(OBJ) -I $(HEADER)
+			$(CC) -o $@ $(OBJ) -lreadline -L $(PATH_READLINE)lib -I $(HEADER)
 
 $(OBJ_DIR)/%.o:	%.c	$(HEADER)
 				@mkdir -p $(dir $@)

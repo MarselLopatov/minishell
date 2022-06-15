@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:16:28 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 21:00:25 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/15 16:54:55 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,4 @@ void	init(char **envp, t_info *info)
 	copy_envp(info, envp);
 	envp_list(info);
 	make_commands(info);
-	for (int i = 0; i < 7; i++)
-		printf("%s\n", info->commands[i]);
 }
