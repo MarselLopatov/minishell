@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   include.h                                          :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/14 19:03:50 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/18 18:12:48 by coleta           ###   ########.fr       */
+/*   Created: 2022/06/15 19:41:33 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/17 18:18:27 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDE_H
-# define INCLUDE_H
+#include "../includes/minishell.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/stat.h>
-# include <readline/readline.h>
-
-#endif
+int	ft_isalpha(int c) //  ДОБАВИТЬ ЦИФРЫ
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
+}

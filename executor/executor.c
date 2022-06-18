@@ -6,7 +6,7 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 19:08:55 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/15 19:50:02 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/18 18:08:58 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	fork_cmd()
 {
+	
 	// fork
 	// signal
 	waitpid(NULL, NULL, NULL);
@@ -21,15 +22,15 @@ void	fork_cmd()
 
 int	one_cmd()
 {
-	int	fd[3];
+	// int	fd[3];
 
-	fd[0] = dup(0);// read fd
-	fd[1] = dup(1);// write fd
-	fd[2] = dup(2);// error fd
+	// fd[0] = dup(0);// read fd
+	// fd[1] = dup(1);// write fd
+	// fd[2] = dup(2);// error fd
 	fork_cmd();
-	dup2(fd[0], 0);
-	dup2(fd[1], 1);
-	dup2(fd[2], 2);
+	// dup2(fd[0], 0);
+	// dup2(fd[1], 1);
+	// dup2(fd[2], 2);
 }
 
 void	wait_all_pid(int number_cmd)

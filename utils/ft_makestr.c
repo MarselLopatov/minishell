@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_makestr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/17 16:31:19 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/17 13:53:24 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/17 16:28:36 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minishell.h"
+#include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+char	*ft_makestr(char *str, int i, int j)
 {
-	t_info	info;
-	char	*line;
+	int		k;
+	char	*new;
 
-	(void)argc;
-	(void)argv;
-	init(envp, &info);
-	while (1)
+	new = malloc (sizeof(char) * (j - i));
+	if (!new)
+		return (NULL);
+	new[j - i - 1] = '\0';
+	k = 0;
+	while (i < j)
 	{
-		line = readline("minishell: ");
-		add_history(line);
-		lexer(&info, line);
+		new[k] = str[k];
+		k++;
+		i++;
 	}
+	return (new);
 }

@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   include.h                                          :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/14 19:03:50 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/18 18:12:48 by coleta           ###   ########.fr       */
+/*   Created: 2022/06/17 19:13:03 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/17 19:14:21 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDE_H
-# define INCLUDE_H
+#include "../includes/minishell.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/stat.h>
-# include <readline/readline.h>
-
-#endif
+int	ft_isprint(int c)
+{
+	if ((c >= 32 && c <= 126))
+		return (1);
+	return (0);
+}

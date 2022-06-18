@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:16:28 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 20:31:41 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/15 16:54:55 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ void	envp_list(t_info *info)
 	}
 }
 
+void	make_commands(t_info *info)
+{
+	info->commands[0] = "echo";
+	info->commands[1] = "cd";
+	info->commands[2] = "pwd";
+	info->commands[3] = "export";
+	info->commands[4] = "unset";
+	info->commands[5] = "env";
+	info->commands[6] = "exit";
+}
+
 void	init(char **envp, t_info *info)
 {
 	info->exif_f = 0;
@@ -53,4 +64,5 @@ void	init(char **envp, t_info *info)
 	info->status = 1;
 	copy_envp(info, envp);
 	envp_list(info);
+	make_commands(info);
 }
