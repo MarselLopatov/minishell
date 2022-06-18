@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/17 16:31:24 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/18 18:36:38 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ typedef struct s_buildins_ptr
 {
 	/* data */
 }		t_buildins_ptr;
+
+typedef struct s_pipe
+{
+	// pid_t	pid;
+}			t_pipe;
 
 typedef struct s_info
 {

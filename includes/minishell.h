@@ -6,17 +6,14 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/17 19:13:58 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/18 19:04:32 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "structs.h"
-# include <stdlib.h>
-# include <stdio.h>
-# include <readline/readline.h>
+#include "includes.h"
 // #include <readline/history.h>
 
 void	init(char **enpv, t_info *info);
@@ -34,7 +31,10 @@ int		ft_isprint(int c);
 
 //parsing
 void	lexer(t_info *info, char *line);
-void	check_pipe(int *i, t_info *info, char *line);
-void	check_dollar(int *i, t_info *info, char *line);
+int		check_pipe(int *i, t_info *info, char *line);
+int		check_dollar(int *i, t_info *info, char *line);
+int		check_redirect(int *i, t_info *info, char *line);
+int		check_heredoc(int *i, t_info *info, char *line);
+void	parser(t_info *info);
 
 #endif
