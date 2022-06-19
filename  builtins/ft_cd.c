@@ -6,7 +6,7 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:41:11 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/14 19:20:02 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/19 20:09:15 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	change(char *pach)
 	{
 		if (pwd)
 			; //изменить OLDPWD
-			// удалить pwd
+			free(pwd);
 		pwd = getcwd(NULL, 0);
 		if (pwd)
 			; //изменить PWD
-			// удалить pwd
+			free(pwd);
 		return (1);
 	}
 	return (0);
@@ -41,8 +41,12 @@ void	change_directory(char *pach)
 	//stat(pach, &st);
 }
 
-void	ft_cd()
+void	ft_cd(char **args)
 {
+	if (args[0] == "-")
+		;
+	if (args[0] == "~")
+		;
 	//выбор знаков
 	// change_directory();
 }

@@ -6,7 +6,7 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/18 18:13:36 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/19 16:35:44 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ int		ft_isprint(int c);
 void	lexer(t_info *info, char *line);
 void	check_pipe(int *i, t_info *info, char *line);
 void	check_dollar(int *i, t_info *info, char *line);
+
+//built
+int	ft_builtins(t_comand *comand);
 
 #endif

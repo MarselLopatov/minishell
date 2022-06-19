@@ -6,21 +6,21 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 19:59:28 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/14 20:04:03 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/19 19:33:02 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_echo(char **arg)
+void	ft_echo(char **args)
 {
 	int	i;
 
 	i = 1;
 	// флаги
-	while (arg[i])
+	while (args[i])
 	{
-		ft_putstr_fd(arg[i], 1);
+		ft_putstr_fd(args[i], 1);
 		i++;
-		if (arg[i])
+		if (args[i])
 			ft_putstr_fd(" ", 1);
 	}
 	// \n при надобности

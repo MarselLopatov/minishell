@@ -6,28 +6,36 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 19:08:55 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/18 18:08:58 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/19 19:29:52 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	fork_cmd()
+void	fork_cmd(t_info *data)
 {
-	
-	// fork
-	// signal
-	waitpid(NULL, NULL, NULL);
+	int	pid;
+	int	status;
+
+	pid = fork();
+	if (!pid)
+	{
+		if (execve(data->comand->cmd, data->comand->args, data->envp) == -1)
+			; // ERROR
+	}
+	waitpid(pid, &status, 0);
+	// check status child
 }
 
-int	one_cmd()
+int	one_cmd(t_info *data)
 {
 	// int	fd[3];
 
 	// fd[0] = dup(0);// read fd
 	// fd[1] = dup(1);// write fd
 	// fd[2] = dup(2);// error fd
-	fork_cmd();
+	if (ft_builtins(data->comand))
+		fork_cmd(data);
 	// dup2(fd[0], 0);
 	// dup2(fd[1], 1);
 	// dup2(fd[2], 2);
@@ -36,6 +44,14 @@ int	one_cmd()
 void	wait_all_pid(int number_cmd)
 {
 
+}
+
+void	fork_all(pid_t *pid, int i)
+{
+	
+	// pid[i] = fork();
+	// if (!pid[i])
+	
 }
 
 int	more_cmd(int number_cmd)
@@ -54,27 +70,25 @@ int	more_cmd(int number_cmd)
 	wait_all_pid(number_cmd);
 }
 
-int	count_comand()
+int	count_comand(t_comand *comand)
 {
 	int	i;
 
 	i = 0;
-	while (i)
+	while (comand != NULL)
 	{
 		i++;
+		comand = comand->next;
 	}
 	return (i);
 }
 
-int	executor()
+int	executor(t_info *data)
 {
-	int	number_cmd;
-
-	number_cmd =  count_comand();
-	if (number_cmd == 1)
-		one_cmd(); // one
-	else if (number_cmd > 1)
-		more_cmd(number_cmd); // more one
+	if (data->comand->next == NULL)
+		one_cmd(data);
+	else
+		more_cmd(count_comand(data->comand));
 	// очистка comand в конце работы
 	return (1);
 }
