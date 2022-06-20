@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/18 18:36:38 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/20 18:45:38 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,39 @@
 
 typedef struct s_list
 {
-	void			*key;
 	void			*value;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct s_envp
+{
+	char	*key;
+	char	*value;
+}			t_envp;
+
+typedef struct s_token
+{
+	int				key;
+	void			*value;
+}					t_token;
+
+typedef struct s_help
+{
+	char	*cmd;
+	char	**argv;
+}		t_help;
+
 
 typedef struct s_buildins_ptr
 {
 	/* data */
 }		t_buildins_ptr;
 
-typedef struct s_pipe
-{
-	// pid_t	pid;
-}			t_pipe;
-
 typedef struct s_info
 {
 	char				**envp;
 	t_list				*envp_list;
-	t_list				*params;
+	t_list				*token;
 	t_buildins_ptr		buildins[7];
 	char				*commands[7];
 	char				envp_f;
