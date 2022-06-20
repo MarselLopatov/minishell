@@ -6,7 +6,7 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/19 16:35:44 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/20 19:47:10 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		ft_isspace(int c);
 int		ft_isalpha(int c);
 char	*ft_makestr(char *str, int i, int j);
 int		ft_isprint(int c);
+char	*ft_strchr(const char *s, int c);
 
 //parsing
 void	lexer(t_info *info, char *line);

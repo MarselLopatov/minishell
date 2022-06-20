@@ -6,7 +6,7 @@
 /*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/19 18:04:39 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/20 19:39:01 by coleta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ typedef struct s_info
 	char				exif_f;
 	int					status;
 }						t_info;
+
+t_info	info;
 
 #endif
