@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 18:45:38 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/20 21:06:07 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_info
 	char				**envp;
 	t_list				*envp_list;
 	t_list				*token;
+	t_list				*help;
 	t_buildins_ptr		buildins[7];
 	char				*commands[7];
 	char				envp_f;

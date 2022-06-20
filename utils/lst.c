@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 19:04:17 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 18:43:13 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:31:59 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ t_list	*ft_create_token(char *value, int key)
 	return (ft_lstnew(token));
 }
 
-t_list	*ft_create_envp(char *str1, char *str2)
+t_list	*ft_create_envp(char *key, char *value)
 {
 	t_envp	*env;
 
 	env = malloc (sizeof(t_envp));
 	if (!env)
 		return (NULL);
-	env->key = str1;
-	env->value = str2;
+	env->key = key;
+	env->value = value;
 	return (ft_lstnew(env));
 }
 

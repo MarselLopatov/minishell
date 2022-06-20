@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 18:43:32 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:33:54 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int		check_redirect(int *i, t_info *info, char *line);
 int		check_heredoc(int *i, t_info *info, char *line);
 t_list	*ft_create_token(char *value, int key);
 t_list	*ft_create_envp(char *str1, char *str2);
+t_list	*ft_create_help(char *cmd, char **argv);
 
 //parser
 void	parser(t_info *info);
 void	split_tokens(t_info *info);
 int		count_pipes(t_list	*params);
 int		count_cmds(t_list *params, int p_i);
-
 
 #endif

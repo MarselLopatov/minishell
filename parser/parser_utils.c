@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/18 17:07:26 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 20:27:35 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/19 19:39:44 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/20 21:13:54 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	parser(t_info *info)
+int	count_pipes(t_list	*token)
 {
-	// preparser()
-	split_tokens(info);
+	int	i;
+
+	i = 0;
+	while (token)
+	{
+		if (((t_token *)token)->key == PIPE)
+			i++;
+		token = token->next;
+	}
+	return (i);
 }
