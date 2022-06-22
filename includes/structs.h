@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 21:06:07 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/22 18:55:57 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_help
 	char	**argv;
 }		t_help;
 
-
 typedef struct s_buildins_ptr
 {
 	/* data */
@@ -55,5 +54,7 @@ typedef struct s_info
 	char				exif_f;
 	int					status;
 }						t_info;
+
+t_info	info;
 
 #endif

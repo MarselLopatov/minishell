@@ -6,15 +6,14 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 20:33:54 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/22 18:42:05 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "includes.h"
-// #include <readline/history.h>
+# include "includes.h"
 
 void	init(char **enpv, t_info *info);
 
@@ -37,12 +36,13 @@ int		check_redirect(int *i, t_info *info, char *line);
 int		check_heredoc(int *i, t_info *info, char *line);
 t_list	*ft_create_token(char *value, int key);
 t_list	*ft_create_envp(char *str1, char *str2);
-t_list	*ft_create_help(char *cmd, char **argv);
+t_list	*ft_create_help(t_list *token, int p_i);
 
 //parser
 void	parser(t_info *info);
 void	split_tokens(t_info *info);
 int		count_pipes(t_list	*params);
 int		count_cmds(t_list *params, int p_i);
+void	fill_argv(t_help *help, t_list *tmp, int p_i);
 
 #endif

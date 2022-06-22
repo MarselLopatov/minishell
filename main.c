@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/19 19:15:14 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/22 18:55:42 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_info	info;
 	char	*line;
 
 	(void)argc;
@@ -25,6 +24,6 @@ int	main(int argc, char **argv, char **envp)
 		line = readline("minishell: ");
 		add_history(line);
 		lexer(&info, line);
-		break;
+		break ;
 	}
 }

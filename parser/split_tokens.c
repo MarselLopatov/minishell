@@ -6,76 +6,92 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:40:35 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 21:22:41 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/22 21:03:42 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	help_fill_argv(t_help help, t_list *params, int i)
+char	*pull_dollar(char *value)
 {
-	if (((t_token *)params)->key == WORD && i == 0)
-		help.cmd = params->value;
-	else if (((t_token *)params)->key == WORD)
-		help.argv = params->value;
-	else if (((t_token *)params)->key == DOLLAR)
-		help.argv = pull_dollar();
-	else if (((t_token *)params)->key == REDIR_IN || \
-		((t_token *)params)->key == REDIR_OUT)
-		help.argv = pull_redir();
-	else if (((t_token *)params)->key == EXP_FIELD || \
-		((t_token *)params)->key == FIELD)
-		help.argv = pull_quotes();
+	t_list	*tmp;
+	int	i;
+	char *new = NULL;
+
+	i = 0;
+	tmp = info.envp_list;
+	while (value[i])
+	{
+		if (value[i] == '$')
+			// делай что-то
+		i++;
+	}
+	return (new);
 }
 
-void	fill_argv(t_help help, t_list *params, int p_i)
+void	help_fill_argv(t_help *help, t_list *token, int i)
 {
-	int	i;
-	int	pipe_num;
+	if (((t_token *)token->value)->key == WORD && i == 0)
+		help->cmd = token->value;
+	else if (((t_token *)token->value)->key == WORD)
+		help->argv[i] = token->value;
+	else if (((t_token *)token->value)->key == DOLLAR)
+		help->argv[i] = pull_dollar(((t_token *)token->value)->value);
+	// else if (((t_token *)token->value)->key == REDIR_IN || \
+	// 	((t_token *)token->value)->key == REDIR_OUT)
+	// 	help->argv[i] = pull_redir();
+	// else if (((t_token *)token->value)->key == EXP_FIELD || \
+	// 	((t_token *)token->value)->key == FIELD)
+	// 	help->argv[i] = pull_quotes();
+}
+
+void	fill_argv(t_help *help, t_list *tmp, int p_i)
+{
+	int		i;
+	int		pipe_num;
+	t_list	*token;
 
 	i = 0;
 	pipe_num = 0;
-	while (params)
+	token = tmp;
+	while (token)
 	{
 		if (pipe_num < p_i)
 		{
-			if (((t_token *)params)->key == PIPE)
+			if (((t_token *)token->value)->key == PIPE)
 				pipe_num++;
-			params = params->next;
+			token = token->next;
 			continue ;
 		}
-		help_fill_argv(help, params, i);
-		params = params->next;
+		help_fill_argv(help, token, i);
+		token = token->next;
 		i++;
 	}
 }
 
-int	count_cmds(t_list *token)
+int	count_cmds(t_list *token, int p_i)
 {
 	t_list	*tmp;
+	int		pipe_num;
+	int		i;
 
 	tmp = token;
-	while (token && ((t_token *)token->value)->key != PIPE)
-	{
-		
-	}
-	int	i;
-	int	pipe_num;
-
 	i = 0;
 	pipe_num = 0;
 	while (token)
 	{
 		if (pipe_num < p_i)
 		{
-			if (((t_token *)params)->key == PIPE)
+			if (((t_token *)token->value)->key == PIPE)
 				pipe_num++;
-			params = params->next;
+			token = token->next;
 			continue ;
 		}
-		if (((t_token *)params)->key == WORD)
+		if (((t_token *)token->value)->key == WORD)
 			i++;
-		params = params->next;
+		if (((t_token *)token->value)->key == PIPE)
+			break ;
+		token = token->next;
 	}
 	return (i);
 }
@@ -87,11 +103,11 @@ void	split_tokens(t_info *info)
 	int		c_pipes;
 
 	i = 0;
-	c_pipes = count_pipes(info->token);
 	tmp = info->token;
+	c_pipes = count_pipes(info->token);
 	while (i <= c_pipes)
 	{
-		// чето надо сделать
+		ft_pushback(&(info->help), ft_create_help(info->token, i));
 		i++;
 	}
 }

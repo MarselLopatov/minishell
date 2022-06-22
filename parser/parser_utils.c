@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:39:44 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 21:13:54 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/22 17:07:40 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_pipes(t_list	*token)
 	i = 0;
 	while (token)
 	{
-		if (((t_token *)token)->key == PIPE)
+		if (((t_token *)token->value)->key == PIPE)
 			i++;
 		token = token->next;
 	}
