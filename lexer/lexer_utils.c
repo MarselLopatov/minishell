@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:51:31 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 16:03:45 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/22 20:59:23 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,12 @@ int	check_dollar(int *i, t_info *info, char *line)
 	if (line[*i] != '$')
 		return (0);
 	j = *i + 1;
-	while (ft_isalpha(line[j]))
+	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' && line[j] != '$')
 		j++;
-	if (j == *i)
-	{
-		printf("ERROR\n");
-		// exit(1);
-	}
+	if (line[j] == '$' && (j - 1) == (*i))
+		j++;
 	ft_pushback(&(info->token), ft_create_token \
-		(ft_makestr((line + *i + 1), *i, j), DOLLAR));
+		(ft_makestr((line + *i + 1), *i, j - 1), DOLLAR));
 	*i = j;
 	return (1);
 }
@@ -65,6 +62,6 @@ int	check_heredoc(int *i, t_info *info, char *line)
 		ft_pushback(&(info->token), ft_create_token("<<", REDIR_INSOURCE));
 	else
 		return (0);
-	(*i)+= 2;
+	(*i) += 2;
 	return (1);
 }

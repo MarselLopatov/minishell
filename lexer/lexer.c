@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:46:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 16:25:52 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/22 18:56:08 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	check_words(int *i, t_info *info, char *line)
 	int	j;
 
 	j = *i;
-	while (line[j] && ft_isprint(line[j]) && !ft_isspace(line[j]) &&\
-		line[j] != '|' && line[j] != '$' && line[j] != '>' &&\
-		line[j] != '<' && line[j] != '|' && line[j] != '\'' &&\
+	while (line[j] && ft_isprint(line[j]) && !ft_isspace(line[j]) && \
+		line[j] != '|' && line[j] != '$' && line[j] != '>' && \
+		line[j] != '<' && line[j] != '|' && line[j] != '\'' && \
 		line[j] != '\"' && line[j] != '\\' && line[j] != ';')
 		j++;
 	if (j > *i)
@@ -111,12 +111,12 @@ void	lexer(t_info *info, char *line)
 		check_dollar(&i, info, line);
 		check_redirect(&i, info, line);
 	}
-	parser(info);
-	// while (info->token)
-	// {
-	// 	printf("key = %d, value = %s\n", ((t_token *)info->token->value)->key, ((t_token *)info->token->value)->value);
-	// 	info->token = info->token->next;
-	// }
+	// parser(info);
+	while (info->token)
+	{
+		printf("key = %d, value = %s\n", ((t_token *)info->token->value)->key, ((t_token *)info->token->value)->value);
+		info->token = info->token->next;
+	}
 }
 
 // препарсер будет проверять на ошибки и валидность (например  ; или | в началае)
