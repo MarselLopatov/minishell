@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/27 20:34:49 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/27 18:20:54 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/27 18:22:01 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minishell.h"
+#include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*line;
+	size_t	i;
 
-	(void)argc;
-	(void)argv;
-	init(envp, &info);
-	while (1)
-	{
-		line = readline("minishell: ");
-		add_history(line);
-		lexer(&info, line);
-		break ;
-	}
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - s2[i]);
 }

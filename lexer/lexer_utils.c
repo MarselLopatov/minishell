@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:51:31 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 20:59:23 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/27 20:38:30 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_dollar(int *i, t_info *info, char *line)
 	if (line[*i] != '$')
 		return (0);
 	j = *i + 1;
-	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' && line[j] != '$')
+	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' && line[j] != '$' )
 		j++;
 	if (line[j] == '$' && (j - 1) == (*i))
 		j++;
@@ -45,9 +45,9 @@ int	check_dollar(int *i, t_info *info, char *line)
 int	check_redirect(int *i, t_info *info, char *line)
 {
 	if (line[*i] == '>' && line[*i + 1] != '>')
-		ft_pushback(&(info->token), ft_create_token(">", REDIR_IN));
+		ft_pushback(&(info->token), ft_create_token(ft_strdup(">"), REDIR_IN));
 	else if (line[*i] == '<' && line[*i + 1] != '<')
-		ft_pushback(&(info->token), ft_create_token("<", REDIR_OUT));
+		ft_pushback(&(info->token), ft_create_token(ft_strdup("<"), REDIR_OUT));
 	else
 		return (0);
 	(*i)++;
@@ -57,9 +57,9 @@ int	check_redirect(int *i, t_info *info, char *line)
 int	check_heredoc(int *i, t_info *info, char *line)
 {
 	if (line[*i] == '>' && line[*i + 1] == '>')
-		ft_pushback(&(info->token), ft_create_token(">>", REDIR_APPEND));
+		ft_pushback(&(info->token), ft_create_token(ft_strdup(">>"), REDIR_APPEND));
 	else if (line[*i] == '<' && line[*i + 1] == '<')
-		ft_pushback(&(info->token), ft_create_token("<<", REDIR_INSOURCE));
+		ft_pushback(&(info->token), ft_create_token(ft_strdup("<<"), REDIR_INSOURCE));
 	else
 		return (0);
 	(*i) += 2;

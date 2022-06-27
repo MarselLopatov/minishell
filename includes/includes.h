@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 18:18:26 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/18 18:18:56 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/27 20:32:30 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <readline/readline.h>
+# include <sys/types.h>
+# include <unistd.h>
 
 #endif

@@ -6,27 +6,49 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:40:35 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 21:03:42 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/27 20:42:27 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+char	*ft_cut_field(char *str)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	size = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+		{
+			
+			continue ;
+		}
+		count++;
+	}
+}
+
 char	*pull_dollar(char *value)
 {
 	t_list	*tmp;
-	int	i;
-	char *new = NULL;
 
-	i = 0;
 	tmp = info.envp_list;
-	while (value[i])
+	if (value[0] == '$')
+		return(ft_itoa(get_pid()));
+	else if (value[0] == '?')
+		return (ft_itoa(info.status));
+	else
 	{
-		if (value[i] == '$')
-			// делай что-то
-		i++;
+		while (tmp)
+		{
+			if (!ft_strcmp((value + 1), ((t_envp *)tmp->value)->value))
+				return (ft_strdup(((t_envp *)tmp->value)->value));
+			tmp = tmp->next;
+		}
 	}
-	return (new);
+	return (NULL);
 }
 
 void	help_fill_argv(t_help *help, t_list *token, int i)

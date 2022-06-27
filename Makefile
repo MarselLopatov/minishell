@@ -4,12 +4,12 @@ HEADER			= includes/minishell.h
 PATH_READLINE	= ~/.brew/Cellar/readline/8.1.2/
 
 OBJ_DIR 		= ./objects
-SRC				= $(shell ls ./executor/*.c) $(shell ls ./src/*.c) $(shell ls ./utils/*.c) $(shell ls ./lexer/*.c) $(shell ls ./parser/*.c) main.c
+SRC				= $(shell ls ./executor/*.c) $(shell ls ./src/*.c) $(shell ls ./utils/*.c) $(shell ls ./lexer/*.c) main.c #$(shell ls ./parser/*.c)
 OBJ				= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 CFLAGS 			= -Wall -Wextra -Werror
 RM	 			= rm -rf
-CC				= gcc
+CC				= gcc -g3
 
 all		: $(NAME)
 

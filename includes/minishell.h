@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 18:42:05 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/27 20:36:08 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int		ft_isspace(int c);
 int		ft_isalpha(int c);
 char	*ft_makestr(char *str, int i, int j);
 int		ft_isprint(int c);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strdup(const char *s);
+char	*ft_itoa(int n);
 
 //lexer
 void	lexer(t_info *info, char *line);

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/27 20:34:49 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/27 18:26:18 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/27 18:26:32 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minishell.h"
+#include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+char	*ft_strdup(const char *s)
 {
-	char	*line;
+	char	*str;
+	int		i;
 
-	(void)argc;
-	(void)argv;
-	init(envp, &info);
-	while (1)
+	str = malloc (sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		line = readline("minishell: ");
-		add_history(line);
-		lexer(&info, line);
-		break ;
+		str[i] = s[i];
+		i++;
 	}
+	str[i] = '\0';
+	return (str);
 }

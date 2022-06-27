@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:46:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 18:56:08 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/27 21:09:17 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_spaces(int *i, t_info *info, char *line)
 	while (line[j] && ft_isspace(line[j]))
 		j++;
 	if (j > *i)
-		ft_pushback(&(info->token), ft_create_token(" ", SEP));
+		ft_pushback(&(info->token), ft_create_token(ft_strdup(" "), SEP));
 	else
 		return (0);
 	*i = j;
@@ -46,7 +46,7 @@ int	check_words(int *i, t_info *info, char *line)
 	return (1);
 }
 
-int	check_double_quotation(int	*i, t_info *info, char *line)
+int	check_double_quotation(int	*i, t_info *info, char *line) // ПЕРЕДЕЛАТЬ ПОД РЕКУРСИЮ
 {
 	int	j;
 
@@ -54,6 +54,12 @@ int	check_double_quotation(int	*i, t_info *info, char *line)
 	if (line[j] != '\"')
 		return (0);
 	j++;
+	if (line[j] == '\"')
+	{
+		(*i) = j;
+		return (check_double_quotation(i, info, line));
+	}
+	printf("1");
 	while (line[j] != '\"' && line[j])
 		j++;
 	if (!line[j])
@@ -78,6 +84,8 @@ int	check_quotation(int	*i, t_info *info, char *line)
 	j++;
 	while (line[j] != '\'' && line[j])
 		j++;
+	// if (line[j] == '\'' && j - 1 == (*i))
+	// 	check_quotation(i, info, line + 1);
 	if (!line[j])
 	{
 		printf("ERROR\n");
