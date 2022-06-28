@@ -41,33 +41,47 @@ int	one_cmd(t_info *data)
 	// dup2(fd[2], 2);
 }
 
-void	wait_all_pid(int number_cmd)
+void	baby_process(t_comand *data)
 {
+	int	i;
 
-}
-
-void	fork_all(pid_t *pid, int i)
-{
-	
-	// pid[i] = fork();
-	// if (!pid[i])
-	
+	i = 0;
+	while (i < 2)
+	{
+		if (data->fd_close[i] > 0)
+			close(data->fd_close[i]);
+		i++;
+	}
+	dup2(data->fd_in_out[READ_FD], STDIN_FILENO);
+	dup2(data->fd_in_out[WRITE_FD], STDOUT_FILENO);
+	dup2(data->fd_in_out[ERR_FD], STDERR_FILENO);
+	if (execve(data->cmd, data->args, info.envp) == -1)
+		;//Ошибка execve
 }
 
 int	more_cmd(int number_cmd)
 {
 	int		i;
-	pid_t	*pid_cmd;
+	pid_t	pid;
 
-	pid_cmd = malloc(sizeof(pid_t) * number_cmd);
-	if (!pid_cmd)
-		; //error
 	i = 0;
 	while (i < number_cmd)
 	{
-		//fork
+		pid = fork();
+		if (!pid)
+			baby_process(&info.comand[i]);
+		else if (pid > 0)
+		{
+			if (info.comand[i].fd_in_out[WRITE_FD] != STDOUT_FILENO)
+				close(info.comand[i].fd_in_out[WRITE_FD]);
+			if (info.comand[i].fd_in_out[READ_FD] != STDIN_FILENO)
+				close(info.comand[i].fd_in_out[READ_FD]);
+			int status;
+			waitpid(pid, &status, 0);
+		}
+		else
+			;//error fork
 	}
-	wait_all_pid(number_cmd);
 }
 
 int	count_comand(t_comand *comand)
@@ -81,6 +95,44 @@ int	count_comand(t_comand *comand)
 		comand = comand->next;
 	}
 	return (i);
+}
+
+void	define_fds(t_comand *cmds)
+{
+	int	end[2];
+
+	pipe(end);
+	if (cmds[0].fd_in_out[WRITE_FD] == STDOUT_FILENO)
+		cmds[0].fd_in_out[WRITE_FD] = end[WRITE_FD];
+	else
+		close(end[WRITE_FD]);
+	if (cmds[1].fd_in_out[READ_FD] == STDIN_FILENO)
+		cmds[1].fd_in_out[READ_FD] = end[READ_FD];
+	else
+		close(end[READ_FD]);
+	if (cmds[0].fd_close[0] == -1)
+		cmds[0].fd_close[0] = cmds[1].fd_in_out[READ_FD];
+	else
+		cmds[0].fd_close[1] = cmds[1].fd_in_out[READ_FD];
+	if (cmds[1].fd_close[0] == -1)
+		cmds[1].fd_close[0] = cmds[0].fd_in_out[WRITE_FD];
+	else
+		cmds[1].fd_close[1] = cmds[0].fd_in_out[WRITE_FD];
+}
+
+void	cmds_fds(t_comand *cmds, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if ((size != 1) && (i != size - 1))
+			define_fds(&cmds[i]);
+		if (i == size - 1 && (size != 1))
+			cmds[i].fd_close[0] = cmds[i - 1].fd_in_out[WRITE_FD];
+		i++;
+	}
 }
 
 int	executor(t_info *data)

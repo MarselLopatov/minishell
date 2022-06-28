@@ -29,6 +29,9 @@ typedef struct s_comand
 {
 	char			*cmd;
 	char			**args;
+	int				fd_in_out[3];
+	int				fd_close[2];
+	
 	int				flag_pipe;
 	char			*redirect_in;
 	char			*redirect_out;

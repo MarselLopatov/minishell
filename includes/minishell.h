@@ -17,6 +17,10 @@
 #include "structs.h"
 #include "include.h"
 
+# define READ_FD 0
+# define WRITE_FD 1
+# define ERR_FD 2
+
 void	init(char **enpv, t_info *info);
 
 //lib funcs
