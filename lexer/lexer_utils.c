@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:51:31 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/27 20:38:30 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/28 20:32:12 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	check_dollar(int *i, t_info *info, char *line)
 	if (line[*i] != '$')
 		return (0);
 	j = *i + 1;
-	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' && line[j] != '$' )
-		j++;
-	if (line[j] == '$' && (j - 1) == (*i))
+	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' && line[j] != '$')
 		j++;
 	ft_pushback(&(info->token), ft_create_token \
 		(ft_makestr((line + *i + 1), *i, j - 1), DOLLAR));

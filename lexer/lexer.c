@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:46:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/27 21:09:17 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/28 20:26:05 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_words(int *i, t_info *info, char *line)
 	return (1);
 }
 
-int	check_double_quotation(int	*i, t_info *info, char *line) // ПЕРЕДЕЛАТЬ ПОД РЕКУРСИЮ
+int	check_double_quotation(int	*i, t_info *info, char *line)
 {
 	int	j;
 
@@ -54,13 +54,7 @@ int	check_double_quotation(int	*i, t_info *info, char *line) // ПЕРЕДЕЛА
 	if (line[j] != '\"')
 		return (0);
 	j++;
-	if (line[j] == '\"')
-	{
-		(*i) = j;
-		return (check_double_quotation(i, info, line));
-	}
-	printf("1");
-	while (line[j] != '\"' && line[j])
+	while (line[j] && line[j] != '\"')
 		j++;
 	if (!line[j])
 	{
@@ -82,10 +76,8 @@ int	check_quotation(int	*i, t_info *info, char *line)
 	if (line[j] != '\'')
 		return (0);
 	j++;
-	while (line[j] != '\'' && line[j])
+	while (line[j] && line[j] != '\'')
 		j++;
-	// if (line[j] == '\'' && j - 1 == (*i))
-	// 	check_quotation(i, info, line + 1);
 	if (!line[j])
 	{
 		printf("ERROR\n");

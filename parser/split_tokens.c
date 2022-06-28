@@ -6,38 +6,18 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:40:35 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/27 20:42:27 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/28 20:31:51 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-char	*ft_cut_field(char *str)
-{
-	int	i;
-	int	size;
-
-	i = 0;
-	size = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-		{
-			
-			continue ;
-		}
-		count++;
-	}
-}
 
 char	*pull_dollar(char *value)
 {
 	t_list	*tmp;
 
 	tmp = info.envp_list;
-	if (value[0] == '$')
-		return(ft_itoa(get_pid()));
-	else if (value[0] == '?')
+	if (value[0] == '?')
 		return (ft_itoa(info.status));
 	else
 	{
