@@ -12,6 +12,48 @@
 
 #include "../includes/minishell.h"
 
+char	**get_paths(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (ft_strncmp(envp[i], "PATH=", 5))
+		i++;
+	return (ft_split(envp[i] + 5, ':'));
+}
+
+void	chech_comand(char *cmd)
+{
+	char	**paths;
+	char	*path;
+	char	*path_cmd;
+	int		i;
+
+	i = 0;
+	paths = get_paths(info.envp);
+	path_cmd = ft_strjoin("/", cmd);
+	while (paths[i])
+	{
+		path = ft_strjoin(paths[i], path_cmd);
+		if (!access(path, X_OK))
+		{
+			// free(cmd);
+			cmd = path;
+			break;
+		}
+		free(path);
+		i++;
+	}
+	i = 0;
+	while (paths[i])
+	{
+		free(paths[i]);
+		i++;
+	}
+	free(paths);
+	free(path_cmd);
+}
+
 void	define_fds(t_comand *cmds)
 {
 	int	end[2];
@@ -57,8 +99,11 @@ void	fork_cmd(t_info *data)
 
 	pid = fork();
 	if (!pid)
+	{
+		chech_comand(data->comand->cmd);// предусмотреть ошибку что команда не нашлась
 		if (execve(data->comand->cmd, data->comand->args, data->envp) == -1)
 			; // ERROR
+	}
 	else if (pid == -1)
 		;//error fork
 	waitpid(pid, &status, 0);
@@ -94,9 +139,12 @@ void	baby_process(t_comand *data)
 	dup2(data->fd_in_out[WRITE_FD], STDOUT_FILENO);
 	dup2(data->fd_in_out[ERR_FD], STDERR_FILENO);
 	if (ft_builtins(data))
+	{
+		chech_comand(data->cmd);// предусмотреть ошибку что команда не нашлась
 		if (execve(data->cmd, data->args, info.envp) == -1)
 			;//Ошибка execve
 	}
+}
 
 void	wait_pid(pid_t *pid, int n)
 {
