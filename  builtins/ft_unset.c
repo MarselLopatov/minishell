@@ -1,23 +1,5 @@
 #include "../includes/minishell.h"
 
-void	*ft_realloc(void *old, size_t new_size)
-{
-	void	*new;
-	int		i;
-
-	new = malloc(new_size);
-	if (!new)
-		return (NULL);
-	i = 0;
-	while (i < new_size)
-	{
-		((char *)new)[i] = ((char *)old)[i];
-		i++;
-	}
-	free(old);
-	return (new);
-}
-
 static void	up_mass(int k)
 {
 	while (info.envp[k + 1])
@@ -51,7 +33,6 @@ void ft_unset(char **args)
 				info.envp[j] = NULL;
 				up_mass(j);
 				free(temp);
-				
 			}	
 			j++;
 		}

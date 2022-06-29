@@ -14,12 +14,14 @@
 
 char	*get_env(char *name)
 {
+	int	len;
 	int	i;
 
 	i = 0;
+	len = ft_strlen(name);
 	while (info.envp[i])
 	{
-		if (info.envp[i] == name)
+		if (!ft_strncmp(info.envp[i], name, len))
 			return (info.envp[i]);
 		i++;
 	}
@@ -59,17 +61,18 @@ void	ft_cd(char **args)
 {
 	if (args[0] && args[1])
 		; //ERROR Many args
-	if (args[0] == "-")
+		// ft_strncmp
+	if (!ft_strncmp(args[0], "-", 2))
 	{
 		// проверка OLDPWD из ENV
 		change_directory(ft_strchr(get_env("OLDPWD"), '=') + 1);
 		//print PWD
 	}
-	else if (args[0] == "~" || args[0] == "--")
+	else if (!ft_strncmp(args[0], "~", 1) || !ft_strncmp(args[0], "--", 3))
 	{
 		// проверка HOME из ENV
 		change_directory(ft_strchr(get_env("HOME"), '=') + 1);
-		if (args[0] == "~/")
+		if (!ft_strncmp(args[0], "~/", 2))
 			change_directory(args[0] + 2);
 	}
 	else

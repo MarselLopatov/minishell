@@ -34,6 +34,7 @@ int		ft_isalpha(int c);
 char	*ft_makestr(char *str, int i, int j);
 int		ft_isprint(int c);
 char	*ft_strchr(const char *s, int c);
+void	*ft_realloc(void *old, size_t new_size);
 
 //parsing
 void	lexer(t_info *info, char *line);
@@ -41,6 +42,11 @@ void	check_pipe(int *i, t_info *info, char *line);
 void	check_dollar(int *i, t_info *info, char *line);
 
 //built
-int	ft_builtins(t_comand *comand);
+int		ft_builtins(t_comand *comand);
+void	ft_unset(char **args);
+void	ft_pwd();
+void	ft_env(char **args);
+void	ft_echo(char **args);
+void	ft_cd(char **args);
 
 #endif
