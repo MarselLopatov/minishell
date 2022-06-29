@@ -42,7 +42,6 @@ void	env_in_export(char *str)
 
 void	print_export()
 {
-	// declare -x Name="1"
 	char	**export;
 	int		n;
 	int		i;
@@ -64,15 +63,65 @@ void	print_export()
 	free(export);
 }
 
+char	*get_name(char *str)
+{
+	char	*name;
+	int		i;
+	int		n;
+
+	n = index_equals(str);
+	if (n == -1)
+		return (str);
+	name = malloc(n);
+	i = 0;
+	while (i < n)
+	{
+		name[i] = str[i];
+		i++;
+	}
+	return (name);
+}
+
+void	add_env(char *new)
+{
+	char	*name;
+	char	*arg;
+	int		i;
+
+	i = 0;
+	name = get_name(new);
+	while (info.envp[i] && name)
+	{
+		//ffffg ffff
+		if (!ft_strncmp(info.envp[i], name, ft_strlen(name)) && info.envp[i][ft_strlen(name)] == '=')
+		{
+			if (new[index_equals(new) + 1] && ft_strchr(new, '='))
+			{
+				free(info.envp[i]);
+				info.envp[i] = ft_strdup(new);
+			}
+			return ;
+		}
+		i++;
+	}
+	info.envp = ft_realloc(info.envp, (i + 1) * sizeof(char *));
+	info.envp[i] = new;
+}
+
 void	ft_export(char **args)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (args[i])
 	{
+		if ((args[i][0] > 64 && args[i][0] < 91) || (args[i][0] > 96 && args[i][0] < 123))
+		{
+			add_env(args[i]);
+		}
+		else
+			printf("export: `%s': not a valid identifier\n", args[i]);
 		i++;
 	}
-	if (i == 0)
-		print_export();
+	print_export();
 }
