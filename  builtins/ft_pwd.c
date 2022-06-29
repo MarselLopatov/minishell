@@ -12,10 +12,12 @@
 
 #include "../includes/minishell.h"
 
-void	ft_pwd()
+void	ft_pwd(char **args)
 {
 	char	*path;
 
+	if (args[0])
+		;//pwd: too many arguments
 	path = getcwd(NULL, 0);
 	if (!path)
 		; // ошибка пути
