@@ -21,8 +21,11 @@ void	ft_env(char **args)
 	i = 0;
 	while (info.envp[i])
 	{
-		ft_putstr_fd(info.envp[i], 1);
-		ft_putstr_fd("\n", 1);
-		i++;	
+		if (ft_strchr(info.envp[i], '='))
+		{
+			ft_putstr_fd(info.envp[i], 1);
+			ft_putstr_fd("\n", 1);
+		}
+		i++;
 	}
 }

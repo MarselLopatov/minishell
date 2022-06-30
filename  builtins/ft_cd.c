@@ -12,22 +12,6 @@
 
 #include "../includes/minishell.h"
 
-char	*get_env(char *name)
-{
-	int	len;
-	int	i;
-
-	i = 0;
-	len = ft_strlen(name);
-	while (info.envp[i])
-	{
-		if (!ft_strncmp(info.envp[i], name, len))
-			return (info.envp[i]);
-		i++;
-	}
-	return (NULL);
-}
-
 int	change(char *pach)
 {
 	char	*pwd;
@@ -36,12 +20,16 @@ int	change(char *pach)
 	if (!chdir(pach))
 	{
 		if (pwd)
-			; //изменить OLDPWD
+		{
+			set_env("OLDPWD=", pwd);
 			free(pwd);
+		}
 		pwd = getcwd(NULL, 0);
 		if (pwd)
-			; //изменить PWD
+		{
+			set_env("PWD=", pwd);
 			free(pwd);
+		}
 		return (1);
 	}
 	return (0);
@@ -61,7 +49,6 @@ void	ft_cd(char **args)
 {
 	if (args[0] && args[1])
 		; //ERROR Many args
-		// ft_strncmp
 	if (!ft_strncmp(args[0], "-", 2))
 	{
 		// проверка OLDPWD из ENV

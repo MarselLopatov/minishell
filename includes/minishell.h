@@ -48,5 +48,14 @@ void	ft_pwd();
 void	ft_env(char **args);
 void	ft_echo(char **args);
 void	ft_cd(char **args);
+void	ft_export(char **args)
+
+//built utils
+char	*get_name(char *str);
+void	alph_sorting(char **str, int n);
+int	index_equals(char *str);
+void	add_export(char *new);
+void	set_env(char *name, char *pach);
+char	*get_env(char *name);
 
 #endif
