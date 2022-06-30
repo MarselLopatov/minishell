@@ -58,3 +58,28 @@ char	*get_name(char *str)
 	}
 	return (name);
 }
+
+char	*get_env(char *name)
+{
+	int	len;
+	int	i;
+
+	i = 0;
+	len = ft_strlen(name);
+	while (info.envp[i])
+	{
+		if (!ft_strncmp(info.envp[i], name, len))
+			return (info.envp[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+void	set_env(char *name, char *pach)
+{
+	char *env;
+
+	env = ft_strjoin(name, pach);
+	add_export(env);
+	free(env);
+}
