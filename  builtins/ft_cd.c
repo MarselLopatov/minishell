@@ -41,27 +41,53 @@ void	change_directory(char *pach)
 
 	if (change(pach))
 		return ;
-	// обработка ошибки
-	//stat(pach, &st);
+	ft_putstr_fd("minishell: cd: ", 2);
+	ft_putstr_fd(pach, 2);
+	if (stat(pach, &st) == -1)
+		ft_putstr_fd(": No such file or directory", 2);
+	else if (!(st.st_mode & S_IXUSR))
+		ft_putstr_fd(": Permission denied", 2);
+	else
+		ft_putstr_fd(": Not a directory", 2);
+	ft_putchar_fd('\n', 2);
 }
 
 void	ft_cd(char **args)
 {
+	char	*pach;
+
 	if (args[0] && args[1])
 		; //ERROR Many args
 	if (!ft_strncmp(args[0], "-", 2))
 	{
-		// проверка OLDPWD из ENV
-		change_directory(ft_strchr(get_env("OLDPWD"), '=') + 1);
-		//print PWD
+		pach = get_env("OLDPWD");
+		if (pach)
+		{
+			change_directory(ft_strchr(pach, '=') + 1);
+			ft_putstr_fd(ft_strchr(get_env("PWD"), '=') + 1, 1);
+		}
+		else
+			return_error("cd: ", "OLDPWD not set\n", 1);
 	}
 	else if (!ft_strncmp(args[0], "~", 1) || !ft_strncmp(args[0], "--", 3))
 	{
-		// проверка HOME из ENV
-		change_directory(ft_strchr(get_env("HOME"), '=') + 1);
-		if (!ft_strncmp(args[0], "~/", 2))
-			change_directory(args[0] + 2);
+		pach = get_env("HOME");
+		if (pach)
+		{
+			change_directory(ft_strchr(pach, '=') + 1);
+			if (!ft_strncmp(args[0], "~/", 2))
+				change_directory(args[0] + 2);
+		}
+		else
+			return_error("cd: ", "HOME not set\n", 1);
 	}
 	else
-		change_directory(args[0]);
+	{
+		pach = get_env("HOME");
+		if (!pach || ft_strncmp(pach, "~/", 2))
+			change_directory(args[0]);
+		else
+			change_directory(ft_strjoin(ft_strchr(pach, '=') + 1, args[0] + 1));
+		
+	}
 }

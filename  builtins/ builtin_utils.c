@@ -68,7 +68,7 @@ char	*get_env(char *name)
 	len = ft_strlen(name);
 	while (info.envp[i])
 	{
-		if (!ft_strncmp(info.envp[i], name, len))
+		if (!ft_strncmp(info.envp[i], name, len) && info.envp[i][len] == '=')
 			return (info.envp[i]);
 		i++;
 	}
