@@ -21,7 +21,6 @@ void	free_comand(t_comand *comand)
 		comand = comand->next;
 		free(temp);
 	}
-	
 }
 
 int	count_comand(t_comand *comand)

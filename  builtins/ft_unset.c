@@ -15,7 +15,7 @@ static void	up_mass(int k)
 	info.envp = ft_realloc(info.envp, (k - 1) * sizeof(char *));
 }
 
-void ft_unset(char **args)
+void	ft_unset(char **args)
 {
 	int		i;
 	int		j;
@@ -38,5 +38,4 @@ void ft_unset(char **args)
 		}
 		i++;
 	}
-	
 }

@@ -13,9 +13,8 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-
-#include "structs.h"
-#include "include.h"
+# include "structs.h"
+# include "include.h"
 
 # define READ_FD 0
 # define WRITE_FD 1
@@ -44,7 +43,7 @@ void	check_dollar(int *i, t_info *info, char *line);
 //built
 int		ft_builtins(t_comand *comand);
 void	ft_unset(char **args);
-void	ft_pwd();
+void	ft_pwd(char **args);
 void	ft_env(char **args);
 void	ft_echo(char **args);
 void	ft_cd(char **args);

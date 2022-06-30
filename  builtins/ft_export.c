@@ -3,7 +3,7 @@
 static void	env_in_export(char *str)
 {
 	char	*arg;
-	
+
 	ft_putstr_fd("declare -x ", 1);
 	while (*str != '=' && *str)
 		ft_putchar_fd(*str++, 1);
@@ -18,7 +18,7 @@ static void	env_in_export(char *str)
 	ft_putchar_fd('\n', 1);
 }
 
-static void	print_export()
+static void	print_export(void)
 {
 	char	**export;
 	int		n;
@@ -54,7 +54,8 @@ void	add_export(char *new)
 	size_name = ft_strlen(name);
 	while (info.envp[i] && name)
 	{
-		if (!ft_strncmp(info.envp[i], name, size_name) && info.envp[i][size_name] == '=')
+		if (!ft_strncmp(info.envp[i], name, size_name) \
+		&& info.envp[i][size_name] == '=')
 		{
 			if (new[index_equals(new) + 1] && ft_strchr(new, '='))
 			{
@@ -78,7 +79,8 @@ void	ft_export(char **args)
 	i = 0;
 	while (args[i])
 	{
-		if ((args[i][0] > 64 && args[i][0] < 91) || (args[i][0] > 96 && args[i][0] < 123))
+		if ((args[i][0] > 64 && args[i][0] < 91) || \
+		(args[i][0] > 96 && args[i][0] < 123))
 			add_export(args[i]);
 		else
 			printf("export: `%s': not a valid identifier\n", args[i]); //error

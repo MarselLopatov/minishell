@@ -77,7 +77,7 @@ char	*get_env(char *name)
 
 void	set_env(char *name, char *pach)
 {
-	char *env;
+	char	*env;
 
 	env = ft_strjoin(name, pach);
 	add_export(env);

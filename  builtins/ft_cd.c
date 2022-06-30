@@ -88,6 +88,5 @@ void	ft_cd(char **args)
 			change_directory(args[0]);
 		else
 			change_directory(ft_strjoin(ft_strchr(pach, '=') + 1, args[0] + 1));
-		
 	}
 }

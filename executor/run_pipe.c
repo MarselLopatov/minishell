@@ -12,7 +12,6 @@ void	wait_pid(pid_t *pid, int n)
 			waitpid(pid[i], &status, 0);
 		i++;
 	}
-	
 }
 
 void	baby_process(t_comand *data)

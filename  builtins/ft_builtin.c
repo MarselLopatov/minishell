@@ -38,7 +38,7 @@ static void	*init_commnds(void)
 	command[2] = ft_pwd;
 	command[3] = ft_cd;
 	// command[4] = ft_exit;
-	// command[5] = ft_export;
+	command[5] = ft_export;
 	command[6] = ft_unset;
 	return (command);
 }

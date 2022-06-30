@@ -27,17 +27,14 @@ void	chech_comand(char *cmd)
 		{
 			// free(cmd);
 			cmd = path;
-			break;
+			break ;
 		}
 		free(path);
 		i++;
 	}
 	i = 0;
 	while (paths[i])
-	{
-		free(paths[i]);
-		i++;
-	}
+		free(paths[i++]);
 	free(paths);
 	free(path_cmd);
 }

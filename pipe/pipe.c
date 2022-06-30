@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-int pipe(void)
+int	pipe(void)
 {
 	return (0);
 }
