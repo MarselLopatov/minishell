@@ -40,6 +40,15 @@ void	lexer(t_info *info, char *line);
 void	check_pipe(int *i, t_info *info, char *line);
 void	check_dollar(int *i, t_info *info, char *line);
 
+//executor
+void	chech_comand(char *cmd);
+char	**get_paths(char **envp);
+int		count_comand(t_comand *comand);
+void	free_comand(t_comand *comand);
+int		more_cmd(int number_cmd);
+
+
+
 //built
 int		ft_builtins(t_comand *comand);
 void	ft_unset(char **args);
@@ -48,6 +57,7 @@ void	ft_env(char **args);
 void	ft_echo(char **args);
 void	ft_cd(char **args);
 void	ft_export(char **args);
+void	ft_exit(char **args);
 
 //built utils
 char	*get_name(char *str);

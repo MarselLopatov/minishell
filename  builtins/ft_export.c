@@ -72,6 +72,25 @@ void	add_export(char *new)
 	free(name);
 }
 
+int	valid_args(char	*str)
+{
+	int	i;
+
+	if (!(str[0] > 64 && str[0] < 91) || \
+		!(str[0] > 96 && str[0] < 123) || str[0] != 95)
+		return (0);
+	i = 1;
+	while (str[i] && str[i] != '=')
+	{
+		if (!(str[i] > 64 && str[i] < 91) || \
+		!(str[i] > 96 && str[i] < 123) || \
+		!(str[i] > 47 && str[i] < 58) || str[i] != 95)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	ft_export(char **args)
 {
 	int	i;
@@ -79,8 +98,7 @@ void	ft_export(char **args)
 	i = 0;
 	while (args[i])
 	{
-		if ((args[i][0] > 64 && args[i][0] < 91) || \
-		(args[i][0] > 96 && args[i][0] < 123))
+		if (valid_args(args[i]))
 			add_export(args[i]);
 		else
 			printf("export: `%s': not a valid identifier\n", args[i]); //error

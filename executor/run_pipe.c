@@ -45,7 +45,7 @@ int	more_cmd(int number_cmd)
 	pid = malloc(sizeof(pid_t) * number_cmd);
 	if (!pid)
 		;//error pid malloc
-	cmds_fds(info.comand, number_cmd);
+	cmds_fds(info.comand, number_cmd);//в init 
 	while (i < number_cmd)
 	{
 		pid[i] = fork();
