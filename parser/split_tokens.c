@@ -45,7 +45,7 @@ int	count_dollar(char *line, int *i)
 		j++;
 	help_new = ft_makestr((line + *i + 1), *i, j - 1);
 	new = pull_dollar(help_new);
-	while (new[k])
+	while (new && new[k])
 		k++;
 	*i = j;
 	free(help_new);
@@ -60,7 +60,7 @@ int	count_symb(char *str)
 
 	i = -1;
 	counter = 0;
-	while (str[++i])
+	while (str && str[++i])
 	{
 		if (str[i] == '$')
 			counter += count_dollar(str, &i);
@@ -71,19 +71,19 @@ int	count_symb(char *str)
 
 void	copy_dollar(char *line, int *i, int *j, char *copy)
 {
-	// int 	j;
+	int 	l;
 	int		k;
 	char	*new;
 	char	*new_help;
 
 	k = -1;
-	*j = *i + 1;
+	l = *j;
 	while (line[*j] && ft_isprint(line[*j]) && line[*j] != ' ' \
 		&& line[*j] != '$')
 		(*j)++;
-	new_help = ft_makestr((line + *i + 1), *i, *j - 1);
+	new_help = ft_makestr((line + l), l, *j);
 	new = pull_dollar(new_help);
-	while (new[++k])
+	while (new && new[++k])
 	{
 		copy[*i] = new[k];
 		(*i)++;
@@ -97,25 +97,32 @@ char	*pull_quotes(t_list *token)
 	char	*copy;
 	int		i;
 	int		j;
+	int		k;
 
 	i = 0;
-	j = -1;
+	j = 0;
+	k = 0;
 	if (((t_token *)token->value)->key == FIELD)
 		return (ft_strdup(((t_token *)token->value)->value));
 	else
 	{
 		copy = malloc (sizeof(char *) * (count_symb(((t_token *)token->value)->value) + 1));
 		copy[count_symb(((t_token *)token->value)->value)] = '\0';
-		while (((t_token *)token->value)->value[++j])
+		while (((t_token *)token->value)->value && ((t_token *)token->value)->value[j])
 		{
 			if (((t_token *)token->value)->value[j] == '$')
 			{
-				copy_dollar(((t_token *)token->value)->value, &i, &j, copy);
+				j++;
+				copy_dollar(((t_token *) token->value)->value, &i, &j, copy);
+				if (((t_token *)token->value)->value[j] == '$')
+					continue ;
 				copy[i] = ((t_token *)token->value)->value[j];
 			}
 			else
 				copy[i] = ((t_token *)token->value)->value[j];
 			i++;
+			j++;
+			k++;
 		}
 	}
 	return (copy);
