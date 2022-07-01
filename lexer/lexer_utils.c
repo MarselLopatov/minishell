@@ -32,7 +32,8 @@ int	check_dollar(int *i, t_info *info, char *line)
 	if (line[*i] != '$')
 		return (0);
 	j = *i + 1;
-	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' && line[j] != '$')
+	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' \
+		&& line[j] != '$' && line[j] != '\"' && line[j] != '\'')
 		j++;
 	ft_pushback(&(info->token), ft_create_token \
 		(ft_makestr((line + *i + 1), *i, j - 1), DOLLAR));

@@ -28,7 +28,7 @@ typedef struct s_envp
 typedef struct s_token
 {
 	int				key;
-	void			*value;
+	char			*value;
 }					t_token;
 
 typedef struct s_help

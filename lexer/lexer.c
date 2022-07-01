@@ -46,7 +46,7 @@ int	check_words(int *i, t_info *info, char *line)
 	return (1);
 }
 
-int	check_double_quotation(int	*i, t_info *info, char *line)
+int	check_double_quotation(int *i, t_info *info, char *line)
 {
 	int	j;
 
@@ -111,12 +111,12 @@ void	lexer(t_info *info, char *line)
 		check_dollar(&i, info, line);
 		check_redirect(&i, info, line);
 	}
-	// parser(info);
-	while (info->token)
-	{
-		printf("key = %d, value = %s\n", ((t_token *)info->token->value)->key, ((t_token *)info->token->value)->value);
-		info->token = info->token->next;
-	}
+	// while (info->token)
+	// {
+	// 	printf("key = %d, value = %s\n", ((t_token *)info->token->value)->key, ((t_token *)info->token->value)->value);
+	// 	info->token = info->token->next;
+	// }
+	parser(info);
 }
 
 // препарсер будет проверять на ошибки и валидность (например  ; или | в началае)

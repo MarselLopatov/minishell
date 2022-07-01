@@ -23,7 +23,7 @@ char	*pull_dollar(char *value)
 	{
 		while (tmp)
 		{
-			if (!ft_strcmp((value + 1), ((t_envp *)tmp->value)->value))
+			if (!ft_strcmp(value, ((t_envp *)tmp->value)->key))
 				return (ft_strdup(((t_envp *)tmp->value)->value));
 			tmp = tmp->next;
 		}
@@ -31,20 +31,124 @@ char	*pull_dollar(char *value)
 	return (NULL);
 }
 
+int	count_dollar(char *line, int *i)
+{
+	int		j;
+	int		k;
+	char	*new;
+	char	*help_new;
+
+	j = *i + 1;
+	k = 0;
+	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' \
+		&& line[j] != '$')
+		j++;
+	help_new = ft_makestr((line + *i + 1), *i, j - 1);
+	new = pull_dollar(help_new);
+	while (new[k])
+		k++;
+	*i = j;
+	free(help_new);
+	free(new);
+	return (k);
+}
+
+int	count_symb(char *str)
+{
+	int i;
+	int counter;
+
+	i = -1;
+	counter = 0;
+	while (str[++i])
+	{
+		if (str[i] == '$')
+			counter += count_dollar(str, &i);
+		counter++;
+	}
+	return (counter);
+}
+
+void	copy_dollar(char *line, int *i, int *j, char *copy)
+{
+	// int 	j;
+	int		k;
+	char	*new;
+	char	*new_help;
+
+	k = -1;
+	*j = *i + 1;
+	while (line[*j] && ft_isprint(line[*j]) && line[*j] != ' ' \
+		&& line[*j] != '$')
+		(*j)++;
+	new_help = ft_makestr((line + *i + 1), *i, *j - 1);
+	new = pull_dollar(new_help);
+	while (new[++k])
+	{
+		copy[*i] = new[k];
+		(*i)++;
+	}
+	free (new);
+	free (new_help);
+}
+
+char	*pull_quotes(t_list *token)
+{
+	char	*copy;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = -1;
+	if (((t_token *)token->value)->key == FIELD)
+		return (ft_strdup(((t_token *)token->value)->value));
+	else
+	{
+		copy = malloc (sizeof(char *) * (count_symb(((t_token *)token->value)->value) + 1));
+		copy[count_symb(((t_token *)token->value)->value)] = '\0';
+		while (((t_token *)token->value)->value[++j])
+		{
+			if (((t_token *)token->value)->value[j] == '$')
+			{
+				copy_dollar(((t_token *)token->value)->value, &i, &j, copy);
+				copy[i] = ((t_token *)token->value)->value[j];
+			}
+			else
+				copy[i] = ((t_token *)token->value)->value[j];
+			i++;
+		}
+	}
+	return (copy);
+}
+
 void	help_fill_argv(t_help *help, t_list *token, int i)
 {
+	static int counter = 0;
+
 	if (((t_token *)token->value)->key == WORD && i == 0)
-		help->cmd = token->value;
+		help->cmd = ft_strdup(((t_token *)token->value)->value);
 	else if (((t_token *)token->value)->key == WORD)
-		help->argv[i] = token->value;
+		help->argv[counter++] = ft_strdup(((t_token *)token->value)->value);
 	else if (((t_token *)token->value)->key == DOLLAR)
-		help->argv[i] = pull_dollar(((t_token *)token->value)->value);
+		help->argv[counter++] = pull_dollar(((t_token *)token->value)->value);
+	else if (((t_token *)token->value)->key == EXP_FIELD || \
+		((t_token *)token->value)->key == FIELD)
+		help->argv[counter++] = pull_quotes(token);
 	// else if (((t_token *)token->value)->key == REDIR_IN || \
 	// 	((t_token *)token->value)->key == REDIR_OUT)
 	// 	help->argv[i] = pull_redir();
-	// else if (((t_token *)token->value)->key == EXP_FIELD || \
-	// 	((t_token *)token->value)->key == FIELD)
-	// 	help->argv[i] = pull_quotes();
+}
+
+void	skip_pipes(int p_i, t_list *token)
+{
+	static int	pipe_num = 0;
+
+	if (pipe_num < p_i)
+	{
+		if (((t_token *)token->value)->key == PIPE)
+			pipe_num++;
+		token = token->next;
+	}
 }
 
 void	fill_argv(t_help *help, t_list *tmp, int p_i)
@@ -58,13 +162,7 @@ void	fill_argv(t_help *help, t_list *tmp, int p_i)
 	token = tmp;
 	while (token)
 	{
-		if (pipe_num < p_i)
-		{
-			if (((t_token *)token->value)->key == PIPE)
-				pipe_num++;
-			token = token->next;
-			continue ;
-		}
+		skip_pipes(p_i, token);
 		help_fill_argv(help, token, i);
 		token = token->next;
 		i++;
@@ -73,26 +171,22 @@ void	fill_argv(t_help *help, t_list *tmp, int p_i)
 
 int	count_cmds(t_list *token, int p_i)
 {
-	t_list	*tmp;
 	int		pipe_num;
 	int		i;
 
-	tmp = token;
 	i = 0;
 	pipe_num = 0;
 	while (token)
 	{
-		if (pipe_num < p_i)
+		skip_pipes(p_i, token);
+		if (((t_token *)token->value)->key == SEP)
 		{
-			if (((t_token *)token->value)->key == PIPE)
-				pipe_num++;
 			token = token->next;
 			continue ;
 		}
-		if (((t_token *)token->value)->key == WORD)
-			i++;
 		if (((t_token *)token->value)->key == PIPE)
 			break ;
+		i++;
 		token = token->next;
 	}
 	return (i);
@@ -111,6 +205,13 @@ void	split_tokens(t_info *info)
 	{
 		ft_pushback(&(info->help), ft_create_help(info->token, i));
 		i++;
+	}
+	while (info->help)
+	{
+		printf("cmd = %s\n", ((t_help *)info->help->value)->cmd);
+		for (int i = 0; ((t_help *)info->help->value)->argv[i]; i++)
+			printf("argv[%d] = %s\n", i, ((t_help *)info->help->value)->argv[i]);
+		info->help = info->help->next;
 	}
 }
 

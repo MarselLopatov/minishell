@@ -9,7 +9,7 @@ OBJ				= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 CFLAGS 			= -Wall -Wextra -Werror
 RM	 			= rm -rf
-CC				= gcc -g3
+CC				= clang -g3
 
 all		: $(NAME)
 
