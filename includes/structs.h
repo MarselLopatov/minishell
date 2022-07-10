@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 18:55:57 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/10 14:32:28 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ typedef struct s_help
 {
 	char	*cmd;
 	char	**argv;
+	// int		fd;
+	// char	*redir_in;
+	// char	*redir_out;
+	// char	*
+	// int		pipe;
 }		t_help;
 
 typedef struct s_buildins_ptr

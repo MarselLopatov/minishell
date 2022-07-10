@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:51:31 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/28 20:32:12 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/09 15:40:30 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	check_dollar(int *i, t_info *info, char *line)
 
 int	check_redirect(int *i, t_info *info, char *line)
 {
-	if (line[*i] == '>' && line[*i + 1] != '>')
+	if (line[*i] == '>' && line[(*i) + 1] != '>')
 		ft_pushback(&(info->token), ft_create_token(ft_strdup(">"), REDIR_IN));
-	else if (line[*i] == '<' && line[*i + 1] != '<')
+	else if (line[*i] == '<' && line[(*i) + 1] != '<')
 		ft_pushback(&(info->token), ft_create_token(ft_strdup("<"), REDIR_OUT));
 	else
 		return (0);

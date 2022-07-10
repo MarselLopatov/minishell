@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:40:35 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/28 20:31:51 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/10 15:13:52 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,9 @@ char	*pull_quotes(t_list *token)
 	char	*copy;
 	int		i;
 	int		j;
-	int		k;
 
 	i = 0;
 	j = 0;
-	k = 0;
 	if (((t_token *)token->value)->key == FIELD)
 		return (ft_strdup(((t_token *)token->value)->value));
 	else
@@ -122,35 +120,33 @@ char	*pull_quotes(t_list *token)
 				copy[i] = ((t_token *)token->value)->value[j];
 			i++;
 			j++;
-			k++;
 		}
 	}
 	return (copy);
 }
 
-void	help_fill_argv(t_help *help, t_list *token, int i)
+void	help_fill_argv(t_help *help, t_list *token, int *i)
 {
-	static int counter = 0;
-
-	if (((t_token *)token->value)->key == WORD && i == 0)
+	if (((t_token *)token->value)->key == WORD && (*i) == 0)
 		help->cmd = ft_strdup(((t_token *)token->value)->value);
 	else if (((t_token *)token->value)->key == WORD)
-		help->argv[counter++] = ft_strdup(((t_token *)token->value)->value);
+		help->argv[(*i) - 1] = ft_strdup(((t_token *)token->value)->value);
 	else if (((t_token *)token->value)->key == DOLLAR)
-		help->argv[counter++] = pull_dollar(((t_token *)token->value)->value);
+		help->argv[(*i) - 1] = pull_dollar(((t_token *)token->value)->value);
 	else if (((t_token *)token->value)->key == EXP_FIELD || \
 		((t_token *)token->value)->key == FIELD)
-		help->argv[counter++] = pull_quotes(token);
+		help->argv[(*i) - 1] = pull_quotes(token);
 	// else if (((t_token *)token->value)->key == REDIR_IN || \
 	// 	((t_token *)token->value)->key == REDIR_OUT)
-	// 	help->argv[i] = pull_redir();
+	// 	help->argv[(*i) - 1] = pull_redir();
+	(*i)++;
 }
 
 void	skip_pipes(int p_i, t_list *token)
 {
 	static int	pipe_num = 0;
 
-	if (pipe_num < p_i)
+	while (pipe_num < p_i)
 	{
 		if (((t_token *)token->value)->key == PIPE)
 			pipe_num++;
@@ -167,12 +163,16 @@ void	fill_argv(t_help *help, t_list *tmp, int p_i)
 	i = 0;
 	pipe_num = 0;
 	token = tmp;
-	while (token)
+	while (token && ((t_token *)token->value)->key != PIPE)
 	{
-		skip_pipes(p_i, token);
-		help_fill_argv(help, token, i);
+		while (pipe_num < p_i)
+		{
+			if (((t_token *)token->value)->key == PIPE)
+				pipe_num++;
+			token = token->next;
+		}
+		help_fill_argv(help, token, &i);
 		token = token->next;
-		i++;
 	}
 }
 
@@ -185,11 +185,11 @@ int	count_cmds(t_list *token, int p_i)
 	pipe_num = 0;
 	while (token)
 	{
-		skip_pipes(p_i, token);
-		if (((t_token *)token->value)->key == SEP)
+		while (pipe_num < p_i)
 		{
+			if (((t_token *)token->value)->key == PIPE)
+				pipe_num++;
 			token = token->next;
-			continue ;
 		}
 		if (((t_token *)token->value)->key == PIPE)
 			break ;
@@ -221,5 +221,3 @@ void	split_tokens(t_info *info)
 		info->help = info->help->next;
 	}
 }
-
-// echo why not | kek

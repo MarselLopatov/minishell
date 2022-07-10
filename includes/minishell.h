@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/27 20:36:08 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/10 13:38:53 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void	split_tokens(t_info *info);
 int		count_pipes(t_list	*params);
 int		count_cmds(t_list *params, int p_i);
 void	fill_argv(t_help *help, t_list *tmp, int p_i);
+void	preparser(t_info *info); // ВЕРНУТЬ
+
 
 #endif
