@@ -3,7 +3,7 @@
 void	*ft_realloc(void *old, size_t new_size)
 {
 	void	*new;
-	int		i;
+	size_t	i;
 
 	new = malloc(new_size);
 	if (!new)

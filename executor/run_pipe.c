@@ -63,4 +63,5 @@ int	more_cmd(int number_cmd)
 	}
 	wait_pid(pid, number_cmd);
 	free(pid);
+	return (0);
 }

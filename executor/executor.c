@@ -30,7 +30,7 @@ void	fork_cmd(t_info *data)
 	// check status child
 }
 
-int	one_cmd(t_info *data)
+void	one_cmd(t_info *data)
 {
 	// int	fd[3];
 
@@ -50,6 +50,6 @@ int	executor(t_info *data)
 		one_cmd(data);
 	else
 		more_cmd(count_comand(data->comand));
-	free_comand(data);
+	free_comand(data->comand);
 	return (1);
 }

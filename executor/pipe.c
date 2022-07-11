@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+// #include "../includes/minishell.h"
 
-int	pipe(void)
-{
-	return (0);
-}
+// int	pipe(void)
+// {
+// 	return (0);
+// }

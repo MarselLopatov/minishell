@@ -13,20 +13,13 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-
-# include "structs.h"
-# include "include.h"
-
-# define READ_FD 0
-# define WRITE_FD 1
-# define ERR_FD 2
-
+# include "includes.h"
 
 void	init(char **enpv, t_info *info);
 
 //lib funcs
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlen(const char *s);
+// size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 t_list	*ft_lstnew(void *value);
 void	ft_pushback(t_list **lst, t_list *elem);
@@ -40,6 +33,9 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s);
 char	*ft_itoa(int n);
 t_list	*ft_lstlast(t_list *lst);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(const char *str);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
 
 //lexer
 void	lexer(t_info *info, char *line);
@@ -66,6 +62,7 @@ char	**get_paths(char **envp);
 int		count_comand(t_comand *comand);
 void	free_comand(t_comand *comand);
 int		more_cmd(int number_cmd);
+void	cmds_fds(t_comand *cmds, int size);
 
 
 

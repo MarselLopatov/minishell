@@ -24,4 +24,8 @@
 # define PIPE 8
 # define DOLLAR 9
 
+# define READ_FD 0
+# define WRITE_FD 1
+# define ERR_FD 2
+
 #endif
