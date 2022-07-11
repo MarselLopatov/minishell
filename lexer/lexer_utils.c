@@ -6,39 +6,62 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:51:31 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/17 19:11:46 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/22 20:59:23 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	check_pipe(int	*i, t_info *info, char *line)
+int	check_pipe(int	*i, t_info *info, char *line)
 {
 	int	j;
 
 	j = *i;
 	if (line[j] != '|')
-		return ;
-	ft_pushback(&(info->params), ft_lstnew("|", "pipe"));
+		return (0);
+	ft_pushback(&(info->token), ft_create_token("|", PIPE));
 	j++;
 	*i = j;
+	return (1);
 }
 
-void	check_dollar(int *i, t_info *info, char *line)
+int	check_dollar(int *i, t_info *info, char *line)
 {
 	int	j;
 
 	if (line[*i] != '$')
-		return ;
+		return (0);
 	j = *i + 1;
-	while (ft_isalpha(line[j]))
+	while (line[j] && ft_isprint(line[j]) && line[j] != ' ' && line[j] != '$')
 		j++;
-	if (j == *i)
-	{
-		printf("ERROR\n");
-		// exit(1);
-	}
-	ft_pushback(&(info->params), ft_lstnew \
-		(ft_makestr((line + *i + 1), *i, j), "dollar"));
+	if (line[j] == '$' && (j - 1) == (*i))
+		j++;
+	ft_pushback(&(info->token), ft_create_token \
+		(ft_makestr((line + *i + 1), *i, j - 1), DOLLAR));
 	*i = j;
+	return (1);
+}
+
+int	check_redirect(int *i, t_info *info, char *line)
+{
+	if (line[*i] == '>' && line[*i + 1] != '>')
+		ft_pushback(&(info->token), ft_create_token(">", REDIR_IN));
+	else if (line[*i] == '<' && line[*i + 1] != '<')
+		ft_pushback(&(info->token), ft_create_token("<", REDIR_OUT));
+	else
+		return (0);
+	(*i)++;
+	return (1);
+}
+
+int	check_heredoc(int *i, t_info *info, char *line)
+{
+	if (line[*i] == '>' && line[*i + 1] == '>')
+		ft_pushback(&(info->token), ft_create_token(">>", REDIR_APPEND));
+	else if (line[*i] == '<' && line[*i + 1] == '<')
+		ft_pushback(&(info->token), ft_create_token("<<", REDIR_INSOURCE));
+	else
+		return (0);
+	(*i) += 2;
+	return (1);
 }

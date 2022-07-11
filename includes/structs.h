@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
 /*   Updated: 2022/06/20 19:39:01 by coleta           ###   ########.fr       */
+/*   Updated: 2022/06/22 18:55:57 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +16,32 @@
 
 typedef struct s_list
 {
-	void			*key;
 	void			*value;
 	struct s_list	*next;
 }					t_list;
 
-typedef struct s_exe
+
+// typedef struct s_exe
+
+typedef struct s_envp
+{
+	char	*key;
+	char	*value;
+}			t_envp;
+
+typedef struct s_token
+{
+	int				key;
+	void			*value;
+}					t_token;
+
+typedef struct s_help
+{
+	char	*cmd;
+	char	**argv;
+}		t_help;
+
+typedef struct s_buildins_ptr
 {
 	int		pid;
 }			t_exe;
@@ -42,8 +63,12 @@ typedef struct s_info
 {
 	char				**envp;
 	t_list				*envp_list;
-	t_list				*params;
-	t_comand			*comand;
+	// t_list				*params;
+	// t_comand			*comand;
+
+	t_list				*token;
+	t_list				*help;
+	// t_buildins_ptr		buildins[7];
 	char				*commands[7];
 	char				envp_f;
 	char				exif_f;

@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 19:41:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 18:40:09 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/19 19:39:44 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/22 17:07:40 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_isalpha(int c)
+int	count_pipes(t_list	*token)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (token)
+	{
+		if (((t_token *)token->value)->key == PIPE)
+			i++;
+		token = token->next;
+	}
+	return (i);
 }

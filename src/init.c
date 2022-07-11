@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:16:28 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/15 16:54:55 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/20 18:44:05 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	envp_list(t_info *info)
 	while (info->envp[i])
 	{
 		strs = ft_split(info->envp[i], '=');
-		ft_pushback(&(info->envp_list), ft_lstnew(strs[0], strs[1]));
+		ft_pushback(&(info->envp_list), ft_create_envp(strs[0], strs[1]));
 		i++;
 	}
 }

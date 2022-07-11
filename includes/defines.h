@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 19:41:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 18:40:09 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/18 17:47:11 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/19 19:29:42 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-int	ft_isalpha(int c)
-{
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
-}
+# define SEP 0
+# define WORD 1
+# define FIELD 2
+# define EXP_FIELD 3
+# define REDIR_OUT 4
+# define REDIR_IN 5
+# define REDIR_APPEND 6
+# define REDIR_INSOURCE 7
+# define PIPE 8
+# define DOLLAR 9
+
+#endif

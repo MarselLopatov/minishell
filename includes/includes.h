@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 19:41:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 18:40:09 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/18 18:18:26 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/18 18:18:56 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef INCLUDES_H
+# define INCLUDES_H
 
-int	ft_isalpha(int c)
-{
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
-}
+# include "structs.h"
+# include "defines.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <readline/readline.h>
+
+#endif

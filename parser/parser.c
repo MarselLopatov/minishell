@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 19:41:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 18:40:09 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/18 17:07:26 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/20 20:27:35 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_isalpha(int c)
+void	parser(t_info *info)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	// preparser()
+	split_tokens(info);
 }

@@ -6,13 +6,37 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 19:04:17 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/14 19:32:21 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:31:59 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_list	*ft_lstnew(void *value, void *key)
+t_list	*ft_create_token(char *value, int key)
+{
+	t_token	*token;
+
+	token = malloc (sizeof(t_token));
+	if (!token)
+		return (NULL);
+	token->key = key;
+	token->value = value;
+	return (ft_lstnew(token));
+}
+
+t_list	*ft_create_envp(char *key, char *value)
+{
+	t_envp	*env;
+
+	env = malloc (sizeof(t_envp));
+	if (!env)
+		return (NULL);
+	env->key = key;
+	env->value = value;
+	return (ft_lstnew(env));
+}
+
+t_list	*ft_lstnew(void *value)
 {
 	t_list	*new;
 
@@ -20,7 +44,6 @@ t_list	*ft_lstnew(void *value, void *key)
 	if (!new)
 		return (NULL);
 	new->value = value;
-	new->key = key;
 	new->next = NULL;
 	return (new);
 }

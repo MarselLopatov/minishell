@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   lst2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 19:41:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/22 18:40:09 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/20 18:45:06 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/22 20:59:29 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_isalpha(int c)
+t_list	*ft_create_help(t_list *token, int p_i)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	t_help	*help;
+
+	help = malloc(sizeof(t_help));
+	if (!help)
+		return (NULL);
+	help->argv = (char **) malloc (sizeof(char *) * count_cmds(token, p_i));
+	if (!help->argv)
+		return (NULL);
+	fill_argv(help, token, p_i);
+	return (ft_lstnew(help));
 }
