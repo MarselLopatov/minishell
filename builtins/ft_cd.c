@@ -61,7 +61,8 @@ void	directory_home(char *pach, char *pach_2)
 			change_directory(pach_2 + 2);
 	}
 	else
-		return_error("cd: ", "HOME not set\n", 1);
+		ft_putstr_fd("cd:, HOME not set\n", 2);
+		// return_error("cd: ", "HOME not set\n", 1);
 }
 
 void	directory_olppwd(char *pach)
@@ -72,7 +73,8 @@ void	directory_olppwd(char *pach)
 		ft_putstr_fd(ft_strchr(get_env("PWD"), '=') + 1, 1);
 	}
 	else
-		return_error("cd: ", "OLDPWD not set\n", 1);
+		ft_putstr_fd("cd:, OLDPWD not set\n", 2);
+		// return_error("cd: ", "OLDPWD not set\n", 1);
 }
 
 void	ft_cd(char **args)

@@ -36,6 +36,10 @@ t_list	*ft_lstlast(t_list *lst);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
+void	ft_putstr_fd(char *s, int fd);
+char	*ft_strchr(const char *s, int c);
+void	ft_putchar_fd(char c, int fd);
+void	*ft_realloc(void *old, size_t new_size);
 
 //lexer
 void	lexer(t_info *info, char *line);
@@ -57,7 +61,8 @@ void	preparser(t_info *info); // ВЕРНУТЬ
 
 
 //executor
-void	chech_comand(char *cmd);
+int		executor(t_info *data);
+void	chech_comand(t_comand *c);
 char	**get_paths(char **envp);
 int		count_comand(t_comand *comand);
 void	free_comand(t_comand *comand);
@@ -75,6 +80,7 @@ void	ft_echo(char **args);
 void	ft_cd(char **args);
 void	ft_export(char **args);
 void	ft_exit(char **args);
+void	add_export(char *new);
 
 //built utils
 char	*get_name(char *str);

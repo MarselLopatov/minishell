@@ -17,7 +17,7 @@ void	ft_echo(char **args)
 	int	i;
 	int	f_n;
 
-	i = 0;
+	i = -1;
 	f_n = 0;
 	if (!ft_strncmp(args[i++], "-n", 2))
 		f_n = 1;

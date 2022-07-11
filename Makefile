@@ -4,7 +4,7 @@ HEADER			= includes/minishell.h
 PATH_READLINE	= ~/.brew/Cellar/readline/8.1.2/
 
 OBJ_DIR 		= ./objects
-SRC				= $(shell ls ./builtins/*.c) $(shell ls ./executor/*.c) $(shell ls ./src/*.c) $(shell ls ./utils/*.c) $(shell ls ./lexer/*.c) $(shell ls ./parser/*.c) main.c
+SRC				= $(shell ls ./builtins/*.c)  $(shell ls ./executor/*.c) $(shell ls ./src/*.c) $(shell ls ./utils/*.c) $(shell ls ./lexer/*.c) $(shell ls ./parser/*.c) main.c
 OBJ				= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 CFLAGS 			= -Wall -Wextra -Werror
@@ -13,7 +13,7 @@ CC				= clang -g3
 
 all		: $(NAME)
 
-$(NAME)	: $(OBJ) $(LIBFT) $(HEADER)
+$(NAME)	: $(OBJ) $(HEADER)
 			$(CC) -o $@ $(OBJ) -lreadline -L $(PATH_READLINE)lib -I $(HEADER)
 
 $(OBJ_DIR)/%.o:	%.c	$(HEADER)

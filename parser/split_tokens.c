@@ -221,6 +221,7 @@ void	split_tokens(t_info *info)
 	}
 	pipe = ft_lstlast(info->help);
 	((t_help *)pipe->value)->pipe = 0;
+	((t_help *)info->help->value)->pipe = c_pipes;
 	// while (info->help)
 	// {
 	// 	printf("cmd = %s\n", ((t_help *)info->help->value)->cmd);

@@ -20,7 +20,7 @@ void	fork_cmd(t_info *data)
 	pid = fork();
 	if (!pid)
 	{
-		chech_comand(data->comand->cmd);// предусмотреть ошибку что команда не нашлась
+		chech_comand(data->comand);// предусмотреть ошибку что команда не нашлась
 		if (execve(data->comand->cmd, data->comand->args, data->envp) == -1)
 			; // ERROR
 	}

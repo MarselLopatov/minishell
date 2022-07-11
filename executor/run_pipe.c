@@ -30,7 +30,7 @@ void	baby_process(t_comand *data)
 	dup2(data->fd_in_out[ERR_FD], STDERR_FILENO);
 	if (ft_builtins(data))
 	{
-		chech_comand(data->cmd);// предусмотреть ошибку что команда не нашлась
+		chech_comand(data);// предусмотреть ошибку что команда не нашлась
 		if (execve(data->cmd, data->args, info.envp) == -1)
 			;//Ошибка execve
 	}

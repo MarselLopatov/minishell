@@ -10,7 +10,7 @@ char	**get_paths(char **envp)
 	return (ft_split(envp[i] + 5, ':'));
 }
 
-void	chech_comand(char *cmd)
+void	chech_comand(t_comand *c)
 {
 	char	**paths;
 	char	*path;
@@ -19,14 +19,14 @@ void	chech_comand(char *cmd)
 
 	i = 0;
 	paths = get_paths(info.envp);
-	path_cmd = ft_strjoin("/", cmd);
+	path_cmd = ft_strjoin("/", c->cmd);
 	while (paths[i])
 	{
 		path = ft_strjoin(paths[i], path_cmd);
 		if (!access(path, X_OK))
 		{
 			// free(cmd);
-			cmd = path;
+			c->cmd = path;
 			break ;
 		}
 		free(path);

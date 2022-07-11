@@ -53,9 +53,9 @@ int	ft_builtins(t_comand *comand)
 	if (i > -1)
 	{
 		command[i](comand->args);
-		free(comand);
+		free(command);
 		return (0);
 	}
-	free(comand);
+	free(command);
 	return (1);
 }

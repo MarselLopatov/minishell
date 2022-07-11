@@ -16,8 +16,8 @@ void	free_comand(t_comand *comand)
 			i++;
 		}
 		free(comand->args);
-		free(comand->redirect_in);
-		free(comand->redirect_out);
+		// free(comand->redirect_in);
+		// free(comand->redirect_out);
 		comand = comand->next;
 		free(temp);
 	}

@@ -18,7 +18,7 @@ t_list	*ft_create_help(t_list *token, int p_i)
 	int		counter;
 
 	counter = count_cmds(token, p_i);
-	printf("%d\n", counter);
+	// printf("%d\n", counter);
 	help = malloc(sizeof(t_help));
 	if (!help)
 		return (NULL);

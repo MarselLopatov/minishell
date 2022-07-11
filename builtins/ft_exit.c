@@ -12,7 +12,7 @@ void	ft_exit(char **args)
 	}
 	else if (args[1])
 		ft_putstr_fd("minishel: exit: too many arguments ", 2);
-	rl_clear_history();
+	// rl_clear_history();
 	//free все
 	exit(0);// выбирать статус выхода 
 }	
