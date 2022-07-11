@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_makestr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 13:53:24 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/17 16:28:36 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/27 18:26:18 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/27 18:26:32 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*ft_makestr(char *str, int i, int j)
+char	*ft_strdup(const char *s)
 {
-	int		k;
-	char	*new;
+	char	*str;
+	int		i;
 
-	new = malloc (sizeof(char) * (j - i - 1));
-	if (!new)
+	str = malloc (sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
 		return (NULL);
-	new[j - i] = '\0';
-	k = 0;
-	while (i < j)
+	str[ft_strlen(s)] = '\0';
+	i = 0;
+	while (s[i])
 	{
-		new[k] = str[k];
-		k++;
+		str[i] = s[i];
 		i++;
 	}
-	return (new);
+	return (str);
 }

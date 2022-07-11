@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:07:26 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 20:27:35 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/10 14:13:14 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	parser(t_info *info)
 {
-	// preparser()
+	preparser(info);
 	split_tokens(info);
 }

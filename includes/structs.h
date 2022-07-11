@@ -7,7 +7,6 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
 /*   Updated: 2022/06/20 19:39:01 by coleta           ###   ########.fr       */
-/*   Updated: 2022/06/22 18:55:57 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +31,18 @@ typedef struct s_envp
 typedef struct s_token
 {
 	int				key;
-	void			*value;
+	char			*value;
 }					t_token;
 
 typedef struct s_help
 {
 	char	*cmd;
 	char	**argv;
+	int		fd;
+	char	*redir_in;
+	char	*redir_out;
+	char	*heredok;
+	int		pipe;
 }		t_help;
 
 typedef struct s_buildins_ptr

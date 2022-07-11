@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_makestr.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 13:53:24 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/17 16:28:36 by cdoria           ###   ########.fr       */
+/*   Created: 2022/06/27 18:20:54 by cdoria            #+#    #+#             */
+/*   Updated: 2022/06/27 18:22:01 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*ft_makestr(char *str, int i, int j)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int		k;
-	char	*new;
+	size_t	i;
 
-	new = malloc (sizeof(char) * (j - i - 1));
-	if (!new)
-		return (NULL);
-	new[j - i] = '\0';
-	k = 0;
-	while (i < j)
-	{
-		new[k] = str[k];
-		k++;
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-	}
-	return (new);
+	return ((unsigned char)s1[i] - s2[i]);
 }

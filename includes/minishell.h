@@ -34,8 +34,12 @@ int		ft_isspace(int c);
 int		ft_isalpha(int c);
 char	*ft_makestr(char *str, int i, int j);
 int		ft_isprint(int c);
-char	*ft_strchr(const char *s, int c);
-void	*ft_realloc(void *old, size_t new_size);
+// char	*ft_strchr(const char *s, int c);
+// void	*ft_realloc(void *old, size_t new_size);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strdup(const char *s);
+char	*ft_itoa(int n);
+t_list	*ft_lstlast(t_list *lst);
 
 //lexer
 void	lexer(t_info *info, char *line);
@@ -53,6 +57,8 @@ void	split_tokens(t_info *info);
 int		count_pipes(t_list	*params);
 int		count_cmds(t_list *params, int p_i);
 void	fill_argv(t_help *help, t_list *tmp, int p_i);
+void	preparser(t_info *info); // ВЕРНУТЬ
+
 
 //executor
 void	chech_comand(char *cmd);
@@ -77,7 +83,7 @@ void	ft_exit(char **args);
 char	*get_name(char *str);
 void	alph_sorting(char **str, int n);
 int		index_equals(char *str);
-void	add_export(char *new);
+// void	add_export(char *new);
 void	set_env(char *name, char *pach);
 char	*get_env(char *name);
 
