@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:40:35 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/10 15:13:52 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/11 03:25:12 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,22 @@ char	*pull_quotes(t_list *token)
 	return (copy);
 }
 
+void	pull_redir(t_help *help, t_list *token)
+{
+	if (token->next == NULL)
+		exit (100);
+	if (((t_token *)token->value)->key == REDIR_IN)
+		help->redir_in = ft_strdup(((t_token *)token->next->value)->value);
+	else if (((t_token *)token->value)->key == REDIR_OUT)
+		help->redir_out = ft_strdup(((t_token *)token->next->value)->value);
+	else if (((t_token *)token->value)->key == REDIR_APPEND)
+		help->heredok = ft_strdup(((t_token *)token->next->value)->value);
+	if (help->fd != 0)
+		close(help->fd);
+	help->fd = open(((t_token *)token->next->value)->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	write (help->fd, "\n", 1);
+}
+
 void	help_fill_argv(t_help *help, t_list *token, int *i)
 {
 	if (((t_token *)token->value)->key == WORD && (*i) == 0)
@@ -136,22 +152,11 @@ void	help_fill_argv(t_help *help, t_list *token, int *i)
 	else if (((t_token *)token->value)->key == EXP_FIELD || \
 		((t_token *)token->value)->key == FIELD)
 		help->argv[(*i) - 1] = pull_quotes(token);
-	// else if (((t_token *)token->value)->key == REDIR_IN || \
-	// 	((t_token *)token->value)->key == REDIR_OUT)
-	// 	help->argv[(*i) - 1] = pull_redir();
+	else if (((t_token *)token->value)->key == REDIR_IN || \
+		((t_token *)token->value)->key == REDIR_OUT || \
+		((t_token *)token->value)->key == REDIR_APPEND)
+		pull_redir(help, token);
 	(*i)++;
-}
-
-void	skip_pipes(int p_i, t_list *token)
-{
-	static int	pipe_num = 0;
-
-	while (pipe_num < p_i)
-	{
-		if (((t_token *)token->value)->key == PIPE)
-			pipe_num++;
-		token = token->next;
-	}
 }
 
 void	fill_argv(t_help *help, t_list *tmp, int p_i)
@@ -202,6 +207,7 @@ int	count_cmds(t_list *token, int p_i)
 void	split_tokens(t_info *info)
 {
 	t_list	*tmp;
+	t_list	*pipe;
 	int		i;
 	int		c_pipes;
 
@@ -213,11 +219,17 @@ void	split_tokens(t_info *info)
 		ft_pushback(&(info->help), ft_create_help(info->token, i));
 		i++;
 	}
-	while (info->help)
-	{
-		printf("cmd = %s\n", ((t_help *)info->help->value)->cmd);
-		for (int i = 0; ((t_help *)info->help->value)->argv[i]; i++)
-			printf("argv[%d] = %s\n", i, ((t_help *)info->help->value)->argv[i]);
-		info->help = info->help->next;
-	}
+	pipe = ft_lstlast(info->help);
+	((t_help *)pipe->value)->pipe = 0;
+	// while (info->help)
+	// {
+	// 	printf("cmd = %s\n", ((t_help *)info->help->value)->cmd);
+	// 	for (int i = 0; ((t_help *)info->help->value)->argv[i]; i++)
+	// 		printf("argv[%d] = %s\n", i, ((t_help *)info->help->value)->argv[i]);
+	// 	printf("fd = %d\n", ((t_help *)info->help->value)->fd);
+	// 	printf("redir_in = %s\n", ((t_help *)info->help->value)->redir_in);
+	// 	printf("redir_out = %s\n", ((t_help *)info->help->value)->redir_out);
+	// 	printf("redir_append = %s\n", ((t_help *)info->help->value)->heredok);
+	// 	info->help = info->help->next;
+	// }
 }

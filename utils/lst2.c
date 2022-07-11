@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 18:45:06 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/28 20:26:45 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/10 20:02:58 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ t_list	*ft_create_help(t_list *token, int p_i)
 	if (!help->argv)
 		return (NULL);
 	help->argv[counter - 1] = NULL;
+	help->fd = 0;
+	help->pipe = 0;
+	help->redir_in = NULL;
+	help->redir_out = NULL;
+	help->heredok = NULL;
 	fill_argv(help, token, p_i);
 	return (ft_lstnew(help));
 }

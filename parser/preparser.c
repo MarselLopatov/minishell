@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 13:41:53 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/10 15:13:50 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/10 17:59:06 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,24 @@ void	del_sep(t_info *info)
 	}
 }
 
+void	check_double_pipes(t_info *info)
+{
+	t_list	*tmp;
+
+	tmp = info->token;
+	while(tmp)
+	{
+		if (((t_token *)tmp->value)->key == PIPE && \
+			((t_token *)tmp->next->value)->key == PIPE)
+			exit(100);
+		tmp = tmp->next;
+	}
+}
+
 void	preparser(t_info *info)
 {
 	del_sep(info);
+	check_double_pipes(info);
 	// while (info->token)
 	// {
 	// 	printf("key = %d, value = %s\n", ((t_token *)info->token->value)->key, ((t_token *)info->token->value)->value);
