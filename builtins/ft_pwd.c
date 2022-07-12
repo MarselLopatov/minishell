@@ -16,7 +16,7 @@ void	ft_pwd(char **args)
 {
 	char	*path;
 
-	if (args[0] != NULL)
+	if (args != NULL)
 		return ;//pwd: too many arguments
 	path = getcwd(NULL, 0);
 	if (!path)

@@ -39,9 +39,7 @@ int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strchr(const char *s, int c);
 void	ft_putchar_fd(char c, int fd);
-void	*ft_realloc(void *old, size_t old_size, size_t new_size);
-void	*ft_memset(void *b, int c, size_t len);
-void	ft_bzero(void *s, size_t n);
+void	*ft_realloc(void *old, size_t new_size);
 
 //lexer
 void	lexer(t_info *info, char *line);

@@ -25,13 +25,13 @@ static void	print_export(void)
 	int		i;
 
 	n = 0;
-	while (info.envp[n] && info.envp)
+	while (info.envp[n])
 		n++;
 	export = malloc(sizeof(char *) * n);
 	if (!export)
 		return ;
 	i = 0;
-	while (i < n)
+	while (info.envp[i])
 	{
 		export[i] = info.envp[i];
 		i++;
@@ -50,7 +50,7 @@ void	add_export(char *new)
 	int		i;
 	
 	i = 0;
-	name = get_name(new);// можно без malloc !!!
+	name = get_name(new);
 	size_name = ft_strlen(name);
 	while (info.envp[i] && name)
 	{
@@ -67,23 +67,24 @@ void	add_export(char *new)
 		}
 		i++;
 	}
-	info.envp = ft_realloc(info.envp, i * sizeof(char *), (i + 2) * sizeof(char *));
-	info.envp[i] = ft_strdup(new);
+	info.envp = ft_realloc(info.envp, (i + 1) * sizeof(char *));
+	info.envp[i] = new;
 	free(name);
 }
-// "" проверить 
+
 int	valid_args(char	*str)
 {
 	int	i;
 
-	if (!((str[0] > 64 && str[0] < 91) || (str[0] > 96 && str[0] < 123) || str[0] == 95))
+	if (!(str[0] > 64 && str[0] < 91) || \
+		!(str[0] > 96 && str[0] < 123) || str[0] != 95)
 		return (0);
 	i = 1;
 	while (str[i] && str[i] != '=')
 	{
-		if (!((str[i] > 64 && str[i] < 91) || \
-		(str[i] > 96 && str[i] < 123) || \
-		(str[i] > 47 && str[i] < 58) || str[i] == 95))
+		if (!(str[i] > 64 && str[i] < 91) || \
+		!(str[i] > 96 && str[i] < 123) || \
+		!(str[i] > 47 && str[i] < 58) || str[i] != 95)
 			return (0);
 		i++;
 	}
