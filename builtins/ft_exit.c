@@ -2,7 +2,8 @@
 
 void	ft_exit(char **args)
 {
-	if (args == NULL)
+	//уточнить за печать 
+	if (args[0] == NULL)
 		ft_putstr_fd("exit\n", 1);
 	else if (args[0][0] < 48 || args[0][0] > 57)
 	{

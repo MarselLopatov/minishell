@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:07:26 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/10 14:13:14 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/07/12 22:33:44 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,27 @@ void	ft_lstadd_back_c(t_comand **lst, t_comand *new)
 			r = r->next;
 		}
 	}
+}
+
+char	**ft_mstrdup(char **s)
+{
+	char	**new;
+	int		i;
+
+	i = 0;
+	// if (s[0] == NULL)//init argv
+	// 	return (NULL);
+	while (s[i])
+		i++;
+	new = malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (s[i])
+	{
+		new[i] = ft_strdup(s[i]);
+		i++;
+	}
+	new[i] = NULL;
+	return (new);
 }
 
 t_comand	*ft_lstnew_c(t_help *content)
