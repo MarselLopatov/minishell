@@ -39,8 +39,8 @@ char	**ft_mstrdup(char **s)
 	int		i;
 
 	i = 0;
-	if (s[0] == NULL)//init argv
-		return (NULL);
+	// if (s[0] == NULL)//init argv
+	// 	return (NULL);
 	while (s[i])
 		i++;
 	new = malloc(sizeof(char *) * (i + 1));
