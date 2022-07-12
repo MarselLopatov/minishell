@@ -67,7 +67,6 @@ typedef struct s_info
 {
 	char				**envp;
 	t_list				*envp_list;
-	// t_list				*params;
 	t_comand			*comand;
 
 	t_list				*token;
