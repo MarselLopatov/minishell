@@ -9,16 +9,22 @@ void	free_comand(t_comand *comand)
 	while (comand != NULL)
 	{
 		temp = comand;
-		free(comand->cmd);
-		comand->cmd = NULL;
-		while (comand->args[i])
+		if (comand->cmd)
 		{
-			free(comand->args[i]);
-			comand->args[i] = NULL;
-			i++;
+			free(comand->cmd);
+			comand->cmd = NULL;
 		}
-		free(comand->args);
-		comand->args = NULL;
+		if (comand->args)
+		{
+			while (comand->args[i])
+			{
+				free(comand->args[i]);
+				comand->args[i] = NULL;
+				i++;
+			}
+			free(comand->args);
+			comand->args = NULL;
+		}
 		// free(comand->redirect_in);
 		// free(comand->redirect_out);
 		comand = comand->next;
