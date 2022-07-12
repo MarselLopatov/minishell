@@ -51,5 +51,7 @@ int	executor(t_info *data)
 	else
 		more_cmd(count_comand(data->comand));
 	free_comand(data->comand);
+	// free(data);
+	// data = NULL;
 	return (1);
 }

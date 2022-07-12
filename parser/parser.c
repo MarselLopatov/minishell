@@ -33,15 +33,36 @@ void	ft_lstadd_back_c(t_comand **lst, t_comand *new)
 	}
 }
 
+char	**ft_mstrdup(char **s)
+{
+	char	**new;
+	int		i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	new = malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (s[i])
+	{
+		new[i] = ft_strdup(s[i]);
+		i++;
+	}
+	new[i] = NULL;
+	return (new);
+}
+
 t_comand	*ft_lstnew_c(t_help *content)
 {
 	t_comand	*new;
+	int			i;
 
 	new = (t_comand *)malloc(sizeof(t_comand));
 	if (!new)
 		return (NULL);
-	new->cmd = content->cmd;
-	new->args = content->argv;
+	i = 0;
+	new->cmd = ft_strdup(content->cmd);
+	new->args = ft_mstrdup(content->argv);
 	new->next = NULL;
 	return (new);
 }
@@ -63,10 +84,17 @@ void	init_comand(t_info *info)
 	info->comand = comand;
 }
 
+void	free_parser(t_info *info)
+{
+	info->token = NULL;
+	info->help = NULL;
+}
+
 void	parser(t_info *info)
 {
 	preparser(info);
 	split_tokens(info);
 	init_comand(info);
+	free_parser(info);
 	// executor(info);
 }

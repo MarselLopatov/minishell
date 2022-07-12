@@ -17,10 +17,13 @@ void	ft_echo(char **args)
 	int	i;
 	int	f_n;
 
-	i = -1;
+	i = 0;
 	f_n = 0;
-	if (!ft_strncmp(args[i++], "-n", 2))
+	if (!ft_strncmp(args[i], "-n", 2))
+	{
 		f_n = 1;
+		i++;
+	}
 	while (args[i])
 	{
 		ft_putstr_fd(args[i], 1);

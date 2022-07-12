@@ -25,7 +25,6 @@ int	main(int argc, char **argv, char **envp)
 		add_history(line);
 		lexer(&info, line);
 		executor(&info);
-		break ;
 	}
 }
 
