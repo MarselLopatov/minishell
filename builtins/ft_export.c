@@ -48,7 +48,7 @@ void	add_export(char *new)
 	char	*name;
 	int		size_name;
 	int		i;
-
+	
 	i = 0;
 	name = get_name(new);
 	size_name = ft_strlen(name);

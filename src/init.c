@@ -26,7 +26,7 @@ void	copy_envp(t_info *info, char **envp)
 	i = 0;
 	while (i < count)
 	{
-		info->envp[i] = envp[i];
+		info->envp[i] = ft_strdup(envp[i]);
 		i++;
 	}
 	info->envp[i] = NULL;
