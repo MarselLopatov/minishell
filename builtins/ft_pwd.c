@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 19:19:41 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/14 19:25:12 by coleta           ###   ########.fr       */
+/*   Updated: 2022/07/12 23:33:44 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_pwd(char **args)
 {
 	char	*path;
 
-	if (args != NULL)
+	if (args[0] != NULL)
 		return ;//pwd: too many arguments
 	path = getcwd(NULL, 0);
 	if (!path)

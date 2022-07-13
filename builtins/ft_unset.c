@@ -12,7 +12,7 @@ static void	up_mass(int k)
 			info.envp[k] = NULL;
 		}
 	}
-	info.envp = ft_realloc(info.envp, (k - 1) * sizeof(char *));
+	info.envp = ft_realloc(info.envp, k * sizeof(char *), (k - 1) * sizeof(char *));
 }
 
 void	ft_unset(char **args)
@@ -27,7 +27,7 @@ void	ft_unset(char **args)
 		j = 0;
 		while (info.envp[j])
 		{
-			if (args[i] == info.envp[j])
+			if (!ft_strncmp(info.envp[i], args[i], ft_strlen(args[i])))
 			{
 				temp = info.envp[j];
 				info.envp[j] = NULL;

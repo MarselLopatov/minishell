@@ -46,7 +46,7 @@ char	*get_name(char *str)
 
 	n = index_equals(str);
 	if (n == -1)
-		return (str);
+		n = ft_strlen(str);
 	name = malloc(n);
 	if (!name)
 		return (NULL);
