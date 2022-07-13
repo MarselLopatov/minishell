@@ -43,7 +43,7 @@ char	**ft_mstrdup(char **s)
 	// 	return (NULL);
 	while (s[i])
 		i++;
-	new = malloc(sizeof(char *) * (i + 1));
+	new = malloc(sizeof(char *) * (i + 2));
 	i = 0;
 	while (s[i])
 	{
@@ -65,6 +65,11 @@ t_comand	*ft_lstnew_c(t_help *content)
 	i = 0;
 	new->cmd = ft_strdup(content->cmd);
 	new->args = ft_mstrdup(content->argv);
+	new->fd_in_out[0] = 0;
+	new->fd_in_out[1] = 1;
+	new->fd_in_out[2] = 2;
+	new->fd_close[0] = -1;
+	new->fd_close[1] = -1;
 	new->next = NULL;
 	return (new);
 }
@@ -83,6 +88,7 @@ void	init_comand(t_info *info)
 		ft_lstadd_back_c(&comand, ft_lstnew_c(t));
 		temp = temp->next;
 	}
+	cmds_fds(comand, ((t_help *)info->help->value)->pipe + 1);
 	info->comand = comand;
 }
 
@@ -97,6 +103,8 @@ void	parser(t_info *info)
 	preparser(info);
 	split_tokens(info);
 	init_comand(info);
+	// printf("%d %d %d %d %d\n",info->comand->fd_close[0], info->comand->fd_close[1], info->comand->fd_in_out[0], info->comand->fd_in_out[1], info->comand->fd_in_out[2] );
+	// printf("%d %d %d %d %d\n",info->comand->next->fd_close[0], info->comand->next->fd_close[1], info->comand->next->fd_in_out[0], info->comand->next->fd_in_out[1], info->comand->next->fd_in_out[2] );
 	free_parser(info);
 	// executor(info);
 }

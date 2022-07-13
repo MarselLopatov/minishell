@@ -9,7 +9,9 @@ void	wait_pid(pid_t *pid, int n)
 	while (i < n)
 	{
 		if (pid[i])
+		{
 			waitpid(pid[i], &status, 0);
+		}
 		i++;
 	}
 }
@@ -31,35 +33,45 @@ void	baby_process(t_comand *data)
 	if (ft_builtins(data))
 	{
 		chech_comand(data);// предусмотреть ошибку что команда не нашлась
-		if (execve(data->cmd, data->args, info.envp) == -1)
-			;//Ошибка execve
+		// data->args[0] = NULL;
+		// data->args[1] = data->args[2];
+		data->args = malloc(sizeof(char *)*3);
+		data->args[0] = data->cmd;
+		data->args[1] = 0;
+		data->args[2] = 0;
+		// printf("0:%s\t1:%s\n",data->args[0], data->args[1]);
+		if (execve(data->args[0], data->args, info.envp) == -1)
+			printf("comand dont work\n");//Ошибка execve
 	}
 }
 
 int	more_cmd(int number_cmd)
 {
-	int		i;
-	pid_t	*pid;
+	t_comand	*temp;
+	pid_t		*pid;
+	int			i;
 
+	temp = info.comand;	
 	i = 0;
 	pid = malloc(sizeof(pid_t) * number_cmd);
 	if (!pid)
-		;//error pid malloc
-	cmds_fds(info.comand, number_cmd);//в init 
+		printf("MALLOC ERROR\n");//error pid malloc
 	while (i < number_cmd)
 	{
 		pid[i] = fork();
 		if (!pid[i])
-			baby_process(&info.comand[i]);
+			baby_process(temp);
 		else if (pid[i] == -1)
 			;//error fork
-		if (info.comand[i].fd_in_out[WRITE_FD] != STDOUT_FILENO)
-			close(info.comand[i].fd_in_out[WRITE_FD]);
-		if (info.comand[i].fd_in_out[READ_FD] != STDIN_FILENO)
-			close(info.comand[i].fd_in_out[READ_FD]);
+		if (temp->fd_in_out[WRITE_FD] != STDOUT_FILENO)
+			close(temp->fd_in_out[WRITE_FD]);
+		if (temp->fd_in_out[READ_FD] != STDIN_FILENO)
+			close(temp->fd_in_out[READ_FD]);
 		// int status;
-		// waitpid(pid, &status, 0);
+		// waitpid(pid[i], &status, 0);
+		// printf("status:%d\n", status);
 		i++;
+		temp = temp->next;
 	}
 	wait_pid(pid, number_cmd);
 	free(pid);

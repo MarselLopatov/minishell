@@ -1,39 +1,44 @@
 #include "../includes/minishell.h"
 
-void	define_fds(t_comand *cmds)
+void	define_fds(t_comand *cmd)
 {
 	int	end[2];
 
 	pipe(end);
-	if (cmds[0].fd_in_out[WRITE_FD] == STDOUT_FILENO)
-		cmds[0].fd_in_out[WRITE_FD] = end[WRITE_FD];
+	if (cmd->fd_in_out[WRITE_FD] == STDOUT_FILENO)
+		cmd->fd_in_out[WRITE_FD] = end[WRITE_FD];
 	else
 		close(end[WRITE_FD]);
-	if (cmds[1].fd_in_out[READ_FD] == STDIN_FILENO)
-		cmds[1].fd_in_out[READ_FD] = end[READ_FD];
+	if (cmd->next->fd_in_out[READ_FD] == STDIN_FILENO)
+		cmd->next->fd_in_out[READ_FD] = end[READ_FD];
 	else
 		close(end[READ_FD]);
-	if (cmds[0].fd_close[0] == -1)
-		cmds[0].fd_close[0] = cmds[1].fd_in_out[READ_FD];
+	if (cmd->fd_close[0] == -1)
+		cmd->fd_close[0] = cmd->next->fd_in_out[READ_FD];
 	else
-		cmds[0].fd_close[1] = cmds[1].fd_in_out[READ_FD];
-	if (cmds[1].fd_close[0] == -1)
-		cmds[1].fd_close[0] = cmds[0].fd_in_out[WRITE_FD];
+		cmd->fd_close[1] = cmd->next->fd_in_out[READ_FD];
+	if (cmd->next->fd_close[0] == -1)
+		cmd->next->fd_close[0] = cmd->fd_in_out[WRITE_FD];
 	else
-		cmds[1].fd_close[1] = cmds[0].fd_in_out[WRITE_FD];
+		cmd->next->fd_close[1] = cmd->fd_in_out[WRITE_FD];
 }
 
-void	cmds_fds(t_comand *cmds, int size)
+void	cmds_fds(t_comand *cmd, int size)
 {
-	int	i;
+	t_comand	*temp;
+	t_comand	*pred;
+	int			i;
 
 	i = 0;
-	while (i < size)
+	temp = cmd;
+	while (i < size && temp != NULL)
 	{
 		if ((size != 1) && (i != size - 1))
-			define_fds(&cmds[i]);
+			define_fds(temp);
 		if (i == size - 1 && (size != 1))
-			cmds[i].fd_close[0] = cmds[i - 1].fd_in_out[WRITE_FD];
+			temp->fd_close[0] = pred->fd_in_out[WRITE_FD];
 		i++;
+		pred = temp;
+		temp = temp->next;
 	}
 }

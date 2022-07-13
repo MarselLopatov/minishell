@@ -20,8 +20,14 @@ void	fork_cmd(t_info *data)
 	pid = fork();
 	if (!pid)
 	{
+		// date->comand->args[0]
 		chech_comand(data->comand);// предусмотреть ошибку что команда не нашлась
-		if (execve(data->comand->cmd, data->comand->args, data->envp) == -1)
+		data->comand->args = malloc(sizeof(char *)*3);
+		data->comand->args[0] = data->comand->cmd;
+		data->comand->args[1] = 0;
+		data->comand->args[2] = 0;
+		// printf("0:%s\t1:%s\n",data->comand->args[0], data->comand->args[1]);
+		if (execve(data->comand->args[0], data->comand->args, info.envp) == -1)
 			; // ERROR
 	}
 	else if (pid == -1)
