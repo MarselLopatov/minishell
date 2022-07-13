@@ -55,7 +55,7 @@ void	add_export(char *new)
 	while (info.envp[i] && name)
 	{
 		if (!ft_strncmp(info.envp[i], name, size_name) \
-		&& info.envp[i][size_name] == '=')
+		&& (info.envp[i][size_name] == '=' || info.envp[i][size_name] == '\0') )
 		{
 			if (new[index_equals(new) + 1] && ft_strchr(new, '='))
 			{
@@ -72,7 +72,7 @@ void	add_export(char *new)
 	free(name);
 }
 // "" проверить 
-int	valid_args(char	*str)
+static int	valid_args(char	*str)
 {
 	int	i;
 
@@ -97,6 +97,7 @@ void	ft_export(char **args)
 	i = 0;
 	while (args[i])
 	{
+		printf("args[%d] = %s\n", i, args[i]);
 		if (valid_args(args[i]))
 			add_export(args[i]);
 		else
