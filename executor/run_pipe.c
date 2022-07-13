@@ -43,6 +43,7 @@ void	baby_process(t_comand *data)
 		if (execve(data->args[0], data->args, info.envp) == -1)
 			printf("comand dont work\n");//Ошибка execve
 	}
+	exit(0);
 }
 
 int	more_cmd(int number_cmd)
