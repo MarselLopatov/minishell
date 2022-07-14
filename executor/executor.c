@@ -47,11 +47,12 @@ void	one_cmd(t_info *data)
 
 int	executor(t_info *data)
 {
-	signal(SIGINT, SIG_IGN);
+	// signal(SIGINT, SIG_IGN);
 	if (data->comand->next == NULL)
 		one_cmd(data);
 	else
 		more_cmd(count_comand(data->comand));
 	free_comand(data->comand);
+	signal(SIGINT, SIG_DFL);
 	return (1);
 }

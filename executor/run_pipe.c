@@ -19,7 +19,6 @@ void	baby_process(t_comand *data)
 	int	i;
 
 	i = 0;
-	signal(SIGINT, SIG_DFL);
 	while (i < 2)
 	{
 		if (data->fd_close[i] > 0)
