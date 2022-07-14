@@ -93,4 +93,7 @@ int		index_equals(char *str);
 void	set_env(char *name, char *pach);
 char	*get_env(char *name);
 
+//signal
+void	sigint_handler(int sign_num);
+
 #endif
