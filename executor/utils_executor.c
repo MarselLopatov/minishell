@@ -44,3 +44,23 @@ int	count_comand(t_comand *comand)
 	}
 	return (i);
 }
+
+char	**add_cmd(t_comand *data)
+{
+	char	**copy;
+	int		i;
+
+	i = 0;
+	while (data->args[i])
+		i++;
+	copy = malloc(sizeof(char *) * (i + 2));
+	copy[i + 1] = 0;
+	while (data->args[i - 1])
+	{
+		copy[i] = data->args[i - 1];
+		i--;
+	}
+	copy[i] = data->cmd;
+	// free(data->args);
+	return(copy);
+}

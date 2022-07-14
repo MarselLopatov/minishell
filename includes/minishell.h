@@ -83,6 +83,7 @@ void	ft_cd(char **args);
 void	ft_export(char **args);
 void	ft_exit(char **args);
 void	add_export(char *new);
+char	**add_cmd(t_comand *data);
 
 //built utils
 char	*get_name(char *str);
