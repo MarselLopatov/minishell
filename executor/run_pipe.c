@@ -44,8 +44,8 @@ int	more_cmd(int number_cmd)
 	pid_t		*pid;
 	int			i;
 
-	temp = info.comand;	
 	i = 0;
+	temp = info.comand;	
 	pid = malloc(sizeof(pid_t) * number_cmd);
 	if (!pid)
 		printf("MALLOC ERROR\n");//error pid malloc

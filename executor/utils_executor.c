@@ -54,13 +54,15 @@ char	**add_cmd(t_comand *data)
 	while (data->args[i])
 		i++;
 	copy = malloc(sizeof(char *) * (i + 2));
+	if (!copy)
+		return (NULL);
 	copy[i + 1] = 0;
 	while (data->args[i - 1])
 	{
-		copy[i] = data->args[i - 1];
+		copy[i] =ft_strdup(data->args[i - 1]);
 		i--;
 	}
-	copy[i] = data->cmd;
+	copy[i] = ft_strdup(data->cmd);
 	// free(data->args);
 	return(copy);
 }
