@@ -25,8 +25,6 @@ void	free_comand(t_comand *comand)
 			free(comand->args);
 			comand->args = NULL;
 		}
-		// free(comand->redirect_in);
-		// free(comand->redirect_out);
 		comand = comand->next;
 		free(temp);
 	}
@@ -59,10 +57,10 @@ char	**add_cmd(t_comand *data)
 	copy[i + 1] = 0;
 	while (data->args[i - 1])
 	{
-		copy[i] =ft_strdup(data->args[i - 1]);
+		copy[i] = ft_strdup(data->args[i - 1]);
 		i--;
 	}
 	copy[i] = ft_strdup(data->cmd);
 	// free(data->args);
-	return(copy);
+	return (copy);
 }

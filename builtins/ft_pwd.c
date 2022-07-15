@@ -16,11 +16,13 @@ void	ft_pwd(char **args)
 {
 	char	*path;
 
-	if (args[0] != NULL)
-		return ;//pwd: too many arguments
+	(void)args;
 	path = getcwd(NULL, 0);
 	if (!path)
+	{
+		info.status = 1;
 		return ; // ошибка пути
+	}
 	ft_putstr_fd(path, 1);
 	ft_putstr_fd("\n", 1);
 	free(path);

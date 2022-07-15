@@ -62,7 +62,6 @@ void	directory_home(char *pach, char *pach_2)
 	}
 	else
 		ft_putstr_fd("cd:, HOME not set\n", 2);
-		// return_error("cd: ", "HOME not set\n", 1);
 }
 
 void	directory_olppwd(char *pach)
@@ -73,8 +72,7 @@ void	directory_olppwd(char *pach)
 		ft_putstr_fd(ft_strchr(get_env("PWD"), '=') + 1, 1);
 	}
 	else
-		ft_putstr_fd("cd:, OLDPWD not set\n", 2);
-		// return_error("cd: ", "OLDPWD not set\n", 1);
+		ft_putstr_fd("cd: OLDPWD not set\n", 2);
 }
 
 void	ft_cd(char **args)
@@ -82,7 +80,11 @@ void	ft_cd(char **args)
 	char	*pach;
 
 	if (args[0] && args[1])
-		; //ERROR Many args
+	{
+		ft_putstr_fd("cd: ", 2);
+		ft_putstr_fd("too many arguments\n", 2);
+		return ; //ERROR
+	}
 	if (!ft_strncmp(args[0], "-", 2))
 		directory_olppwd(get_env("OLDPWD"));
 	else if (!ft_strncmp(args[0], "~", 1) || !ft_strncmp(args[0], "--", 3))

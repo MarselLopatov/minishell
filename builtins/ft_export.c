@@ -43,19 +43,24 @@ static void	print_export(void)
 	free(export);
 }
 
+void	init_p(int *size_name, int *i, char *name, char *new)
+{
+	i = 0;
+	name = get_name(new);// можно без malloc !!!
+	size_name = ft_strlen(name);
+}
+
 void	add_export(char *new)
 {
 	char	*name;
 	int		size_name;
 	int		i;
-	
-	i = 0;
-	name = get_name(new);// можно без malloc !!!
-	size_name = ft_strlen(name);
+
+	init_p(&size_name, &i, name, new);
 	while (info.envp[i] && name)
 	{
 		if (!ft_strncmp(info.envp[i], name, size_name) \
-		&& (info.envp[i][size_name] == '=' || info.envp[i][size_name] == '\0') )
+		&& (info.envp[i][size_name] == '=' || info.envp[i][size_name] == '\0'))
 		{
 			if (new[index_equals(new) + 1] && ft_strchr(new, '='))
 			{
@@ -67,16 +72,18 @@ void	add_export(char *new)
 		}
 		i++;
 	}
-	info.envp = ft_realloc(info.envp, i * sizeof(char *), (i + 2) * sizeof(char *));
+	info.envp = ft_realloc(info.envp, i * sizeof(char *), \
+							(i + 2) * sizeof(char *));
 	info.envp[i] = ft_strdup(new);
 	free(name);
 }
-// "" проверить 
+
 static int	valid_args(char	*str)
 {
 	int	i;
 
-	if (!((str[0] > 64 && str[0] < 91) || (str[0] > 96 && str[0] < 123) || str[0] == 95))
+	if (!((str[0] > 64 && str[0] < 91) || (str[0] > 96 && str[0] < 123) || \
+				str[0] == 95))
 		return (0);
 	i = 1;
 	while (str[i] && str[i] != '=')
@@ -101,7 +108,11 @@ void	ft_export(char **args)
 		if (valid_args(args[i]))
 			add_export(args[i]);
 		else
-			printf("export: `%s': not a valid identifier\n", args[i]); //error
+		{
+			ft_putstr_fd("export: `", 2);
+			ft_putstr_fd(args[i], 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
+		}
 		i++;
 	}
 	if (i == 0)

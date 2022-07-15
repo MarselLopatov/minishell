@@ -17,7 +17,12 @@ void	ft_env(char **args)
 	int	i;
 
 	if (args[0])
-		; //ERROR
+	{
+		ft_putstr_fd("env: ", 2);
+		ft_putstr_fd(args[0], 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		return ; //ERROR
+	}
 	i = 0;
 	while (info.envp[i])
 	{
