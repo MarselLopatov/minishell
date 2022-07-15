@@ -137,6 +137,7 @@ void	pull_redir(t_help *help, t_list *token)
 		help->heredok = ft_strdup(((t_token *)token->next->value)->value);
 	if (help->fd != 0)
 		close(help->fd);
+	// сделать разное открыте файлов 
 	help->fd = open(((t_token *)token->next->value)->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	write (help->fd, "\n", 1);
 }

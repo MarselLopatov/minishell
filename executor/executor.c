@@ -28,7 +28,7 @@ void	fork_cmd(t_info *data)
 	else if (pid == -1)
 		;//error fork
 	waitpid(pid, &status, 0);
-	// check status child
+	// status child
 }
 
 void	set_redir(int *end)
