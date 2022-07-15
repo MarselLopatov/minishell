@@ -31,27 +31,27 @@ void	fork_cmd(t_info *data)
 	// check status child
 }
 
-// void	set_redir(int *end)
-// {
-// 	dup2(end[READ_FD], STDIN_FILENO);
-// 	dup2(end[WRITE_FD], STDOUT_FILENO);
-// 	dup2(end[ERR_FD], STDERR_FILENO);
-// }
+void	set_redir(int *end)
+{
+	dup2(end[READ_FD], STDIN_FILENO);
+	dup2(end[WRITE_FD], STDOUT_FILENO);
+	dup2(end[ERR_FD], STDERR_FILENO);
+}
 
 void	one_cmd(t_info *data)
 {
-	// int	fd[3];
+	int	fd[3];
 
-	// fd[0] = dup(0);// read fd
-	// fd[1] = dup(1);// write fd
-	// fd[2] = dup(2);// error fd
-	// set_redir(data->comand->fd_in_out);
+	fd[0] = dup(0);// read fd
+	fd[1] = dup(1);// write fd
+	fd[2] = dup(2);// error fd
+	set_redir(data->comand->fd_in_out);
 	if (ft_builtins(data->comand))
 		fork_cmd(data);
-	// dup2(fd[0], 0);
-	// dup2(fd[1], 1);
-	// dup2(fd[2], 2);
-	// set_redir(fd);
+	close(data->comand->fd_in_out[0]);
+	close(data->comand->fd_in_out[1]);
+	close(data->comand->fd_in_out[2]);
+	set_redir(fd);
 }
 
 int	executor(t_info *data)

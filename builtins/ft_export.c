@@ -43,11 +43,11 @@ static void	print_export(void)
 	free(export);
 }
 
-void	init_p(int *size_name, int *i, char *name, char *new)
+void	init_p(int *size_name, int *i, char **name, char *new)
 {
-	i = 0;
-	name = get_name(new);// можно без malloc !!!
-	size_name = ft_strlen(name);
+	*i = 0;
+	*name = get_name(new);// можно без malloc !!!
+	*size_name = ft_strlen(*name);
 }
 
 void	add_export(char *new)
@@ -56,7 +56,9 @@ void	add_export(char *new)
 	int		size_name;
 	int		i;
 
-	init_p(&size_name, &i, name, new);
+	name = NULL;
+	init_p(&size_name, &i, &name, new);
+	printf(":%s\n", name);
 	while (info.envp[i] && name)
 	{
 		if (!ft_strncmp(info.envp[i], name, size_name) \

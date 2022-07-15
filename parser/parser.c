@@ -66,7 +66,10 @@ t_comand	*ft_lstnew_c(t_help *content)
 	new->cmd = ft_strdup(content->cmd);
 	new->args = ft_mstrdup(content->argv);
 	new->fd_in_out[0] = 0;
-	new->fd_in_out[1] = 1;
+	if (content->fd)
+		new->fd_in_out[1] = content->fd;
+	else
+		new->fd_in_out[1] = 1;
 	new->fd_in_out[2] = 2;
 	new->fd_close[0] = -1;
 	new->fd_close[1] = -1;
@@ -103,8 +106,5 @@ void	parser(t_info *info)
 	preparser(info);
 	split_tokens(info);
 	init_comand(info);
-	// printf("%d %d %d %d %d\n",info->comand->fd_close[0], info->comand->fd_close[1], info->comand->fd_in_out[0], info->comand->fd_in_out[1], info->comand->fd_in_out[2] );
-	// printf("%d %d %d %d %d\n",info->comand->next->fd_close[0], info->comand->next->fd_close[1], info->comand->next->fd_in_out[0], info->comand->next->fd_in_out[1], info->comand->next->fd_in_out[2] );
 	free_parser(info);
-	// executor(info);
 }
