@@ -55,12 +55,12 @@ char	**add_cmd(t_comand *data)
 	if (!copy)
 		return (NULL);
 	copy[i + 1] = 0;
-	while (data->args[i - 1])
+	while (i != 0  && data->args[i - 1])
 	{
 		copy[i] = ft_strdup(data->args[i - 1]);
 		i--;
 	}
-	copy[i] = ft_strdup(data->cmd);
+	copy[0] = ft_strdup(data->cmd);
 	// free(data->args);
 	return (copy);
 }

@@ -1,0 +1,96 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/petro/si/minishell'
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/builtin_utils.c -o objects/./builtins/builtin_utils.o
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/ft_builtin.c -o objects/./builtins/ft_builtin.o
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/ft_cd.c -o objects/./builtins/ft_cd.o
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/ft_echo.c -o objects/./builtins/ft_echo.o
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/ft_env.c -o objects/./builtins/ft_env.o
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/ft_exit.c -o objects/./builtins/ft_exit.o
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/ft_export.c -o objects/./builtins/ft_export.o
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/ft_pwd.c -o objects/./builtins/ft_pwd.o
+mkdir -p objects/./builtins/
+clang -g3 -Wall -Wextra -Werror -c builtins/ft_unset.c -o objects/./builtins/ft_unset.o
+mkdir -p objects/./signal/
+clang -g3 -Wall -Wextra -Werror -c signal/signal.c -o objects/./signal/signal.o
+mkdir -p objects/./executor/
+clang -g3 -Wall -Wextra -Werror -c executor/cmds_fds.c -o objects/./executor/cmds_fds.o
+mkdir -p objects/./executor/
+clang -g3 -Wall -Wextra -Werror -c executor/executor.c -o objects/./executor/executor.o
+mkdir -p objects/./executor/
+clang -g3 -Wall -Wextra -Werror -c executor/pipe.c -o objects/./executor/pipe.o
+mkdir -p objects/./executor/
+clang -g3 -Wall -Wextra -Werror -c executor/run_pipe.c -o objects/./executor/run_pipe.o
+mkdir -p objects/./executor/
+clang -g3 -Wall -Wextra -Werror -c executor/utils_executor.c -o objects/./executor/utils_executor.o
+mkdir -p objects/./executor/
+clang -g3 -Wall -Wextra -Werror -c executor/work_string.c -o objects/./executor/work_string.o
+mkdir -p objects/./src/
+clang -g3 -Wall -Wextra -Werror -c src/init.c -o objects/./src/init.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_atoi.c -o objects/./utils/ft_atoi.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_bzero.c -o objects/./utils/ft_bzero.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_isalpha.c -o objects/./utils/ft_isalpha.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_isprint.c -o objects/./utils/ft_isprint.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_isspace.c -o objects/./utils/ft_isspace.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_itoa.c -o objects/./utils/ft_itoa.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_makestr.c -o objects/./utils/ft_makestr.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_memset.c -o objects/./utils/ft_memset.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_putchar_fd.c -o objects/./utils/ft_putchar_fd.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_putstr_fd.c -o objects/./utils/ft_putstr_fd.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_realloc.c -o objects/./utils/ft_realloc.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_split.c -o objects/./utils/ft_split.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_srtlcpy.c -o objects/./utils/ft_srtlcpy.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_strchr.c -o objects/./utils/ft_strchr.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_strcmp.c -o objects/./utils/ft_strcmp.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_strdup.c -o objects/./utils/ft_strdup.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_strjoin.c -o objects/./utils/ft_strjoin.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_strlen.c -o objects/./utils/ft_strlen.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/ft_strncmp.c -o objects/./utils/ft_strncmp.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/lst.c -o objects/./utils/lst.o
+mkdir -p objects/./utils/
+clang -g3 -Wall -Wextra -Werror -c utils/lst2.c -o objects/./utils/lst2.o
+mkdir -p objects/./lexer/
+clang -g3 -Wall -Wextra -Werror -c lexer/lexer.c -o objects/./lexer/lexer.o
+mkdir -p objects/./lexer/
+clang -g3 -Wall -Wextra -Werror -c lexer/lexer_utils.c -o objects/./lexer/lexer_utils.o
+mkdir -p objects/./parser/
+clang -g3 -Wall -Wextra -Werror -c parser/parser.c -o objects/./parser/parser.o
+mkdir -p objects/./parser/
+clang -g3 -Wall -Wextra -Werror -c parser/parser_utils.c -o objects/./parser/parser_utils.o
+mkdir -p objects/./parser/
+clang -g3 -Wall -Wextra -Werror -c parser/preparser.c -o objects/./parser/preparser.o
+mkdir -p objects/./parser/
+clang -g3 -Wall -Wextra -Werror -c parser/split_tokens.c -o objects/./parser/split_tokens.o
+mkdir -p objects/
+clang -g3 -Wall -Wextra -Werror -c main.c -o objects/main.o
+ 
+clang -g3 -o minishell ./objects/./builtins/builtin_utils.o ./objects/./builtins/ft_builtin.o ./objects/./builtins/ft_cd.o ./objects/./builtins/ft_echo.o ./objects/./builtins/ft_env.o ./objects/./builtins/ft_exit.o ./objects/./builtins/ft_export.o ./objects/./builtins/ft_pwd.o ./objects/./builtins/ft_unset.o ./objects/./signal/signal.o ./objects/./executor/cmds_fds.o ./objects/./executor/executor.o ./objects/./executor/pipe.o ./objects/./executor/run_pipe.o ./objects/./executor/utils_executor.o ./objects/./executor/work_string.o ./objects/./src/init.o ./objects/./utils/ft_atoi.o ./objects/./utils/ft_bzero.o ./objects/./utils/ft_isalpha.o ./objects/./utils/ft_isprint.o ./objects/./utils/ft_isspace.o ./objects/./utils/ft_itoa.o ./objects/./utils/ft_makestr.o ./objects/./utils/ft_memset.o ./objects/./utils/ft_putchar_fd.o ./objects/./utils/ft_putstr_fd.o ./objects/./utils/ft_realloc.o ./objects/./utils/ft_split.o ./objects/./utils/ft_srtlcpy.o ./objects/./utils/ft_strchr.o ./objects/./utils/ft_strcmp.o ./objects/./utils/ft_strdup.o ./objects/./utils/ft_strjoin.o ./objects/./utils/ft_strlen.o ./objects/./utils/ft_strncmp.o ./objects/./utils/lst.o ./objects/./utils/lst2.o ./objects/./lexer/lexer.o ./objects/./lexer/lexer_utils.o ./objects/./parser/parser.o ./objects/./parser/parser_utils.o ./objects/./parser/preparser.o ./objects/./parser/split_tokens.o ./objects/main.o -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib -I includes/minishell.h
+make: Leaving directory `/Users/petro/si/minishell'
+ 
