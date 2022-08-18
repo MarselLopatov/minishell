@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 13:41:53 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/10 17:59:06 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/08/17 17:34:58 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ void	check_double_pipes(t_info *info)
 
 void	preparser(t_info *info)
 {
-	del_sep(info);
+	// del_sep(info);
+	// if (((t_token *)info->token->value)->key == PIPE)
+	// {
+	// 	printf("error\n");
+	// 	exit(100);
+	// }
 	check_double_pipes(info);
 	// while (info->token)
 	// {
@@ -56,3 +61,6 @@ void	preparser(t_info *info)
 	// 	info->token = info->token->next;
 	// }
 }
+
+// удалить 1ый SEP
+// проверить на 1ый |

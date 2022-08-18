@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:40:35 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/11 03:25:12 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/08/17 17:20:14 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,11 @@ void	fill_argv(t_help *help, t_list *tmp, int p_i)
 				pipe_num++;
 			token = token->next;
 		}
+		if (((t_token *)token->value)->key == SEP)
+		{
+			token = token->next;
+			continue ;	
+		}
 		help_fill_argv(help, token, &i);
 		token = token->next;
 	}
@@ -196,6 +201,11 @@ int	count_cmds(t_list *token, int p_i)
 			if (((t_token *)token->value)->key == PIPE)
 				pipe_num++;
 			token = token->next;
+		}
+		if (((t_token *)token->value)->key == SEP)
+		{
+			token = token->next;
+			continue ;	
 		}
 		if (((t_token *)token->value)->key == PIPE)
 			break ;

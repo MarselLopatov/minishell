@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 18:18:26 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/10 01:18:04 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/08/17 15:22:07 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@
 # include <unistd.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <signal.h>
+# include <sys/wait.h>
 
 #endif
