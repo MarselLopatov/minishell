@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 18:45:06 by cdoria            #+#    #+#             */
-/*   Updated: 2022/08/17 17:21:40 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/08/18 13:49:46 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_list	*ft_create_help(t_list *token, int p_i)
 	help = malloc(sizeof(t_help));
 	if (!help)
 		return (NULL);
-	help->argv = (char **) malloc (sizeof(char *) * (counter));
+	help->argv = (char **) malloc (sizeof(char *) * (counter - 1));
 	if (!help->argv)
 		return (NULL);
-	help->argv[counter - 1] = NULL;
+	help->argv[counter - 2] = NULL;
 	help->fd = 0;
 	help->pipe = 0;
 	help->redir_in = NULL;

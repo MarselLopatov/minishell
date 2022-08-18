@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:40:35 by cdoria            #+#    #+#             */
-/*   Updated: 2022/08/17 17:20:14 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/08/18 13:49:51 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,10 @@ void	help_fill_argv(t_help *help, t_list *token, int *i)
 		((t_token *)token->value)->key == REDIR_OUT || \
 		((t_token *)token->value)->key == REDIR_APPEND)
 		pull_redir(help, token);
+	else if ((*i) - 1 != 0 && ((t_token *)token->value)->key == SEP)
+		help->argv[(*i) - 1] = ft_strdup(((t_token *)token->value)->value);
+	else
+		return ;
 	(*i)++;
 }
 
@@ -177,11 +181,12 @@ void	fill_argv(t_help *help, t_list *tmp, int p_i)
 				pipe_num++;
 			token = token->next;
 		}
-		if (((t_token *)token->value)->key == SEP)
-		{
-			token = token->next;
-			continue ;	
-		}
+		// if (((t_token *)token->value)->key == SEP)
+		// {
+		// 	help->argv[i - 1] = ft_strdup(((t_token *)token->value)->value);
+		// 	token = token->next;
+		// 	continue ;
+		// }
 		help_fill_argv(help, token, &i);
 		token = token->next;
 	}
@@ -202,11 +207,11 @@ int	count_cmds(t_list *token, int p_i)
 				pipe_num++;
 			token = token->next;
 		}
-		if (((t_token *)token->value)->key == SEP)
-		{
-			token = token->next;
-			continue ;	
-		}
+		// if (((t_token *)token->value)->key == SEP)
+		// {
+		// 	token = token->next;
+		// 	continue ;	
+		// }
 		if (((t_token *)token->value)->key == PIPE)
 			break ;
 		i++;
@@ -233,15 +238,15 @@ void	split_tokens(t_info *info)
 	pipe = ft_lstlast(info->help);
 	((t_help *)pipe->value)->pipe = 0;
 	((t_help *)info->help->value)->pipe = c_pipes;
-	// while (info->help)
-	// {
-	// 	printf("cmd = %s\n", ((t_help *)info->help->value)->cmd);
-	// 	for (int i = 0; ((t_help *)info->help->value)->argv[i]; i++)
-	// 		printf("argv[%d] = %s\n", i, ((t_help *)info->help->value)->argv[i]);
-	// 	printf("fd = %d\n", ((t_help *)info->help->value)->fd);
-	// 	printf("redir_in = %s\n", ((t_help *)info->help->value)->redir_in);
-	// 	printf("redir_out = %s\n", ((t_help *)info->help->value)->redir_out);
-	// 	printf("redir_append = %s\n", ((t_help *)info->help->value)->heredok);
-	// 	info->help = info->help->next;
-	// }
+	while (info->help)
+	{
+		printf("cmd = %s\n", ((t_help *)info->help->value)->cmd);
+		for (int i = 0; ((t_help *)info->help->value)->argv[i]; i++)
+			printf("argv[%d] = %s\n", i, ((t_help *)info->help->value)->argv[i]);
+		printf("fd = %d\n", ((t_help *)info->help->value)->fd);
+		printf("redir_in = %s\n", ((t_help *)info->help->value)->redir_in);
+		printf("redir_out = %s\n", ((t_help *)info->help->value)->redir_out);
+		printf("redir_append = %s\n", ((t_help *)info->help->value)->heredok);
+		info->help = info->help->next;
+	}
 }
