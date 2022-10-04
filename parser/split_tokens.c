@@ -143,7 +143,8 @@ void	pull_redir(t_help *help, t_list *token)
 
 void	help_fill_argv(t_help *help, t_list *token, int *i)
 {
-	if (((t_token *)token->value)->key == WORD && (*i) == 0)
+	if ((((t_token *)token->value)->key == WORD || ((t_token *)token->value)->key == EXP_FIELD
+		|| ((((t_token *)token->value)->key == FIELD))) && (*i) == 0)
 		help->cmd = ft_strdup(((t_token *)token->value)->value);
 	else if (((t_token *)token->value)->key == WORD)
 		help->argv[(*i) - 1] = ft_strdup(((t_token *)token->value)->value);

@@ -63,7 +63,7 @@ void	init(char **envp, t_info *info)
 	signal(SIGQUIT, SIG_IGN);//"^\"
 	info->exif_f = 0;
 	info->envp_f = 1;
-	info->status = 0;
+	info->status = 0;//status exit
 	copy_envp(info, envp);
 	envp_list(info);
 	make_commands(info);

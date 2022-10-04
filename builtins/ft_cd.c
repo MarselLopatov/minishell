@@ -43,6 +43,7 @@ void	change_directory(char *pach)
 		return ;
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(pach, 2);
+	info.status = 1;
 	if (stat(pach, &st) == -1)
 		ft_putstr_fd(": No such file or directory", 2);
 	else if (!(st.st_mode & S_IXUSR))
@@ -62,6 +63,7 @@ void	directory_home(char *pach, char *pach_2)
 	}
 	else
 		ft_putstr_fd("cd:, HOME not set\n", 2);
+	info.status = 0;
 }
 
 void	directory_olppwd(char *pach)
