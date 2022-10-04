@@ -139,7 +139,6 @@ void	pull_redir(t_help *help, t_list *token)
 		close(help->fd);
 	// сделать разное открыте файлов 
 	help->fd = open(((t_token *)token->next->value)->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	write (help->fd, "\n", 1);
 }
 
 void	help_fill_argv(t_help *help, t_list *token, int *i)

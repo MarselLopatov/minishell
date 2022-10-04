@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s)
 		return (NULL);
 	str[ft_strlen(s)] = '\0';
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		str[i] = s[i];
 		i++;
