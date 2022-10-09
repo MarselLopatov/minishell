@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/10/09 14:50:03 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 17:43:11 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ typedef struct s_comand
 	char			**args;
 	int				fd_in_out[3];
 	int				fd_close[2];
-	// int				flag_pipe;
-	// char			*redirect_in;
-	// char			*redirect_out;
-	struct s_comand *next;
+	struct s_comand	*next;
 }		t_comand;
 
 typedef struct s_info
@@ -68,7 +65,6 @@ typedef struct s_info
 	t_list				*token;
 	t_list				*help;
 	t_list				*cmd_info;
-	// t_buildins_ptr		buildins[7];
 	char				*commands[7];
 	char				envp_f;
 	char				exif_f;
