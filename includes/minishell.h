@@ -95,6 +95,7 @@ void	set_env(char *name, char *pach);
 char	*get_env(char *name);
 
 //signal
-void	sigint_handler(int sign_num);
+// void	sigint_handler(int sign_num);
+int	accept_signals(void);
 
 #endif

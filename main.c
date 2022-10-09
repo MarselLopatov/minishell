@@ -21,9 +21,13 @@ int	main(int argc, char **argv, char **envp)
 	init(envp, &info);
 	while (1)
 	{
+		if (accept_signals())
+			exit (-1);
 		line = readline("minishell: ");
+		if (line == NULL)
+			exit(0);
 		if (*line == '\0')
-			continue;
+			continue ;
 		add_history(line);
 		lexer(&info, line);
 		executor(&info);

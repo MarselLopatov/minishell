@@ -95,7 +95,7 @@ void	lexer(t_info *info, char *line)
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if (line[i] == '\\' || line[i] == ';')
 		{
