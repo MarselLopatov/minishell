@@ -117,6 +117,7 @@ void	ft_export(char **args)
 	int	i;
 
 	i = 0;
+	g_info.status = 0;
 	while (args[i])
 	{
 		printf("args[%d] = %s\n", i, args[i]);
@@ -127,6 +128,7 @@ void	ft_export(char **args)
 			ft_putstr_fd("export: `", 2);
 			ft_putstr_fd(args[i], 2);
 			ft_putstr_fd("': not a valid identifier\n", 2);
+			g_info.status = 1;
 		}
 		i++;
 	}

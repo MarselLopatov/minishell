@@ -12,12 +12,37 @@
 
 #include "../includes/minishell.h"
 
+void	status_child(int pid)
+{
+	if (WIFEXITED(pid))
+		g_info.status = WEXITSTATUS(pid);
+	if (WIFSIGNALED(pid))
+	{
+		g_info.status = WTERMSIG(pid);
+		if (g_info.status != 131)
+			g_info.status += 128;
+	}
+}
+
+void	help_free_cmd(t_comand *comand)
+{
+	int	i;
+
+	i = 0;
+	while (comand->args[i])
+	{
+		free(comand->args[i]);
+		comand->args[i] = NULL;
+		i++;
+	}
+	free(comand->args);
+	comand->args = NULL;
+}
+
 void	free_comand(t_comand *comand)
 {
 	t_comand	*temp;
-	int			i;
 
-	i = 0;
 	while (comand != NULL)
 	{
 		temp = comand;
@@ -27,16 +52,7 @@ void	free_comand(t_comand *comand)
 			comand->cmd = NULL;
 		}
 		if (comand->args)
-		{
-			while (comand->args[i])
-			{
-				free(comand->args[i]);
-				comand->args[i] = NULL;
-				i++;
-			}
-			free(comand->args);
-			comand->args = NULL;
-		}
+			help_free_cmd(comand);
 		comand = comand->next;
 		free(temp);
 	}
@@ -73,6 +89,5 @@ char	**add_cmd(t_comand *data)
 		i--;
 	}
 	copy[0] = ft_strdup(data->cmd);
-	// free(data->args);
 	return (copy);
 }

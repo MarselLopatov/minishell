@@ -70,6 +70,7 @@ int		count_comand(t_comand *comand);
 void	free_comand(t_comand *comand);
 int		more_cmd(int number_cmd);
 void	cmds_fds(t_comand *cmds, int size);
+void	status_child(int pid);
 
 //built
 int		ft_builtins(t_comand *comand);

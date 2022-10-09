@@ -80,7 +80,8 @@ char	*get_env(char *name)
 	len = ft_strlen(name);
 	while (g_info.envp[i])
 	{
-		if (!ft_strncmp(g_info.envp[i], name, len) && g_info.envp[i][len] == '=')
+		if (!ft_strncmp(g_info.envp[i], name, len) \
+			&& g_info.envp[i][len] == '=')
 			return (g_info.envp[i]);
 		i++;
 	}
