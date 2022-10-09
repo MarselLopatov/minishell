@@ -26,8 +26,8 @@ void	fork_cmd(t_info *data)
 		if (execve(data->comand->args[0], \
 			data->comand->args, g_info.envp) == -1)
 		{
-			printf("comand dont work a[0] = %s\ta[1] = %s\n", \
-				data->comand->args[0], data->comand->args[1]);
+			printf("minishell: %s: command not found\n", \
+				data->comand->args[0]);
 			exit(127);
 		}
 	}

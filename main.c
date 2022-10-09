@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (accept_signals())
 			exit (-1);
-		line = readline("minishell: ");
+		line = readline("--> minishell: ");
 		if (line == NULL)
 			exit(0);
 		if (*line == '\0')
