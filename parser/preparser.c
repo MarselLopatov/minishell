@@ -41,7 +41,10 @@ void	check_double_pipes(t_info *info)
 	{
 		if (((t_token *)tmp->value)->key == PIPE && \
 			((t_token *)tmp->next->value)->key == PIPE)
-			exit(100);
+		{
+			printf("ERROR\n");
+			exit (1);
+		}
 		tmp = tmp->next;
 	}
 }

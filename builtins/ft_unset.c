@@ -82,4 +82,5 @@ void	ft_unset(char **args)
 		dell(args[i]);
 		i++;
 	}
+	g_info.status = 0;
 }

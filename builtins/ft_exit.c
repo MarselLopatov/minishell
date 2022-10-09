@@ -33,7 +33,6 @@ void	ft_exit(char **args)
 		g_info.status = 1;
 		ft_putstr_fd("minishel: exit: too many arguments ", 2);
 	}
-	// rl_clear_history();
-	//free все
-	exit(g_info.status);// выбирать статус выхода 
+	rl_clear_history();
+	exit(g_info.status);
 }

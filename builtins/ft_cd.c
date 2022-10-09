@@ -51,6 +51,7 @@ void	change_directory(char *pach)
 	else
 		ft_putstr_fd(": Not a directory", 2);
 	ft_putchar_fd('\n', 2);
+	g_info.status = 0;
 }
 
 void	directory_home(char *pach, char *pach_2)

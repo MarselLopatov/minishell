@@ -33,4 +33,5 @@ void	ft_echo(char **args)
 	}
 	if (!f_n)
 		ft_putstr_fd("\n", 1);
+	g_info.status = 0;
 }

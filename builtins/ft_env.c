@@ -33,4 +33,5 @@ void	ft_env(char **args)
 		}
 		i++;
 	}
+	g_info.status = 0;
 }

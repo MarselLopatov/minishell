@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:07:26 by cdoria            #+#    #+#             */
-/*   Updated: 2022/10/09 15:01:41 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 17:31:07 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,6 @@ void	init_comand(t_info *info)
 	}
 	cmds_fds(comand, ((t_help *)info->help->value)->pipe + 1);
 	info->comand = comand;
-}
-
-void	free_parser(t_info *info)
-{
-	info->token = NULL;
-	info->help = NULL;
 }
 
 void	parser(t_info *info)

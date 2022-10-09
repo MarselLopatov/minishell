@@ -12,18 +12,6 @@
 
 #include "../includes/minishell.h"
 
-void	status_child(int pid)
-{
-	if (WIFEXITED(pid))
-		g_info.status = WEXITSTATUS(pid);
-	if (WIFSIGNALED(pid))
-	{
-		g_info.status = WTERMSIG(pid);
-		if (g_info.status != 131)
-			g_info.status += 128;
-	}
-}
-
 void	fork_cmd(t_info *data)
 {
 	int	pid;
@@ -35,17 +23,15 @@ void	fork_cmd(t_info *data)
 		signal(SIGINT, SIG_DFL);
 		chech_comand(data->comand);
 		data->comand->args = add_cmd(data->comand);
-		if (execve(data->comand->args[0], data->comand->args, g_info.envp) == -1)
+		if (execve(data->comand->args[0], \
+			data->comand->args, g_info.envp) == -1)
 		{
 			printf("comand dont work a[0] = %s\ta[1] = %s\n", \
-				data->comand->args[0],data->comand->args[1]);
+				data->comand->args[0], data->comand->args[1]);
 			exit(127);
 		}
 	}
-	else if (pid == -1)
-		;//error fork
 	waitpid(pid, &status, 0);
-	// status child
 	status_child(status);
 }
 
@@ -60,9 +46,9 @@ void	one_cmd(t_info *data)
 {
 	int	fd[3];
 
-	fd[0] = dup(0);// read fd
-	fd[1] = dup(1);// write fd
-	fd[2] = dup(2);// error fd
+	fd[0] = dup(0);
+	fd[1] = dup(1);
+	fd[2] = dup(2);
 	set_redir(data->comand->fd_in_out);
 	if (ft_builtins(data->comand))
 		fork_cmd(data);
@@ -74,7 +60,6 @@ void	one_cmd(t_info *data)
 
 int	executor(t_info *data)
 {
-	// signal(SIGINT, SIG_IGN);
 	g_info.status = 0;
 	signal(SIGINT, SIG_IGN);
 	if (data->comand->next == NULL)
@@ -82,8 +67,5 @@ int	executor(t_info *data)
 	else
 		more_cmd(count_comand(data->comand));
 	free_comand(data->comand);
-	// signal(SIGINT, SIG_DFL);
-	// signal(SIGINT, sigint_handler);
-	// signal(SIGQUIT, sigint_handler);
 	return (1);
 }
