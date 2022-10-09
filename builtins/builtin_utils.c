@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/09 14:49:18 by cdoria            #+#    #+#             */
+/*   Updated: 2022/10/09 14:56:43 by cdoria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 int	index_equals(char *str)
@@ -66,10 +78,10 @@ char	*get_env(char *name)
 
 	i = 0;
 	len = ft_strlen(name);
-	while (info.envp[i])
+	while (g_info.envp[i])
 	{
-		if (!ft_strncmp(info.envp[i], name, len) && info.envp[i][len] == '=')
-			return (info.envp[i]);
+		if (!ft_strncmp(g_info.envp[i], name, len) && g_info.envp[i][len] == '=')
+			return (g_info.envp[i]);
 		i++;
 	}
 	return (NULL);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   work_string.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/09 14:47:01 by cdoria            #+#    #+#             */
+/*   Updated: 2022/10/09 14:50:31 by cdoria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 char	**get_paths(char **envp)
@@ -18,7 +30,7 @@ void	chech_comand(t_comand *c)
 	int		i;
 
 	i = 0;
-	paths = get_paths(info.envp);
+	paths = get_paths(g_info.envp);
 	path_cmd = ft_strjoin("/", c->cmd);
 	while (paths[i])
 	{

@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/09 14:51:04 by cdoria            #+#    #+#             */
+/*   Updated: 2022/10/09 14:51:51 by cdoria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static void	up_mass(int k)
 {
-	while (info.envp[k + 1])
+	while (g_info.envp[k + 1])
 	{
-		info.envp[k] = info.envp[k + 1];
+		g_info.envp[k] = g_info.envp[k + 1];
 		k++;
-		if (!info.envp[k + 1])
-			info.envp[k] = NULL;
+		if (!g_info.envp[k + 1])
+			g_info.envp[k] = NULL;
 	}
-	info.envp = ft_realloc(info.envp, (k + 1) * sizeof(char *), \
+	g_info.envp = ft_realloc(g_info.envp, (k + 1) * sizeof(char *), \
 							(k + 2) * sizeof(char *));
 }
 
@@ -46,12 +58,12 @@ void	dell(char	*arg)
 	}
 	else
 	{
-		while (info.envp[j])
+		while (g_info.envp[j])
 		{
-			if (!ft_strncmp(info.envp[j], arg, ft_strlen(arg)))
+			if (!ft_strncmp(g_info.envp[j], arg, ft_strlen(arg)))
 			{
-				temp = info.envp[j];
-				info.envp[j] = NULL;
+				temp = g_info.envp[j];
+				g_info.envp[j] = NULL;
 				up_mass(j);
 				free(temp);
 			}	

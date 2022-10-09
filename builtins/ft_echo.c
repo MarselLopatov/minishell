@@ -19,7 +19,7 @@ void	ft_echo(char **args)
 
 	i = 0;
 	f_n = 0;
-	if (!ft_strncmp(args[i], "-n", 2))
+	if (args[i] && !ft_strncmp(args[i], "-n", 2))
 	{
 		f_n = 1;
 		i++;

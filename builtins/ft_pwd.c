@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 19:19:41 by coleta            #+#    #+#             */
-/*   Updated: 2022/07/12 23:33:44 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:54:07 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_pwd(char **args)
 	path = getcwd(NULL, 0);
 	if (!path)
 	{
-		info.status = 1;
-		return ; // ошибка пути
+		g_info.status = 1;
+		return ;
 	}
 	ft_putstr_fd(path, 1);
 	ft_putstr_fd("\n", 1);
