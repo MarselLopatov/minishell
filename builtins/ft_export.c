@@ -12,24 +12,6 @@
 
 #include "../includes/minishell.h"
 
-static void	env_in_export(char *str)
-{
-	char	*arg;
-
-	ft_putstr_fd("declare -x ", 1);
-	while (*str != '=' && *str)
-		ft_putchar_fd(*str++, 1);
-	arg = ft_strchr(str, '=');
-	if (arg)
-	{
-		ft_putchar_fd('=', 1);
-		ft_putchar_fd('\"', 1);
-		ft_putstr_fd(arg + 1, 1);
-		ft_putchar_fd('\"', 1);
-	}
-	ft_putchar_fd('\n', 1);
-}
-
 static void	print_export(void)
 {
 	char	**export;
@@ -68,9 +50,7 @@ void	add_export(char *new)
 	int		size_name;
 	int		i;
 
-	name = NULL;
 	init_p(&size_name, &i, &name, new);
-	printf(":%s\n", name);
 	while (g_info.envp[i] && name)
 	{
 		if (!ft_strncmp(g_info.envp[i], name, size_name) \
@@ -120,7 +100,6 @@ void	ft_export(char **args)
 	g_info.status = 0;
 	while (args[i])
 	{
-		printf("args[%d] = %s\n", i, args[i]);
 		if (valid_args(args[i]))
 			add_export(args[i]);
 		else

@@ -12,6 +12,24 @@
 
 #include "../includes/minishell.h"
 
+void	env_in_export(char *str)
+{
+	char	*arg;
+
+	ft_putstr_fd("declare -x ", 1);
+	while (*str != '=' && *str)
+		ft_putchar_fd(*str++, 1);
+	arg = ft_strchr(str, '=');
+	if (arg)
+	{
+		ft_putchar_fd('=', 1);
+		ft_putchar_fd('\"', 1);
+		ft_putstr_fd(arg + 1, 1);
+		ft_putchar_fd('\"', 1);
+	}
+	ft_putchar_fd('\n', 1);
+}
+
 char	**get_paths(char **envp)
 {
 	int	i;

@@ -23,10 +23,11 @@ void	fork_cmd(t_info *data)
 		signal(SIGINT, SIG_DFL);
 		chech_comand(data->comand);
 		data->comand->args = add_cmd(data->comand);
-		if (execve(data->comand->args[0], data->comand->args, g_info.envp) == -1)
+		if (execve(data->comand->args[0], \
+			data->comand->args, g_info.envp) == -1)
 		{
 			printf("comand dont work a[0] = %s\ta[1] = %s\n", \
-				data->comand->args[0],data->comand->args[1]);
+				data->comand->args[0], data->comand->args[1]);
 			exit(127);
 		}
 	}

@@ -33,5 +33,3 @@ int	main(int argc, char **argv, char **envp)
 		executor(&g_info);
 	}
 }
-
-// || - ошибка (мы не обрабатываем больше одного |)
