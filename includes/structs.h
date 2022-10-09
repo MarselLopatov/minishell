@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/10/09 14:50:03 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 15:03:34 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_comand
 	// int				flag_pipe;
 	// char			*redirect_in;
 	// char			*redirect_out;
-	struct s_comand *next;
+	struct s_comand	*next;
 }		t_comand;
 
 typedef struct s_info

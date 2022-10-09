@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:49:18 by cdoria            #+#    #+#             */
-/*   Updated: 2022/10/09 14:56:43 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 15:02:37 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ char	*get_env(char *name)
 	len = ft_strlen(name);
 	while (g_info.envp[i])
 	{
-		if (!ft_strncmp(g_info.envp[i], name, len) && g_info.envp[i][len] == '=')
+		if (!ft_strncmp(g_info.envp[i], name, len) \
+			&& g_info.envp[i][len] == '=')
 			return (g_info.envp[i]);
 		i++;
 	}
