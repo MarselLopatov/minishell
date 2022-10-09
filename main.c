@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:10 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/10 14:32:28 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:57:34 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	init(envp, &info);
+	init(envp, &g_info);
 	while (1)
 	{
+		if (accept_signals())
+			exit (-1);
 		line = readline("minishell: ");
+		if (line == NULL)
+			exit(0);
+		if (*line == '\0')
+			continue ;
 		add_history(line);
-		lexer(&info, line);
-		executor(&info);
+		lexer(&g_info, line);
+		executor(&g_info);
 	}
 }
 

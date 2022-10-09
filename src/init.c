@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:16:28 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 18:44:05 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:40:25 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@ void	make_commands(t_info *info)
 
 void	init(char **envp, t_info *info)
 {
-	signal(SIGINT, sigint_handler);// ^C
-	signal(SIGQUIT, SIG_IGN);//"^\"
+	// signal(SIGINT, sigint_handler);// ^C
+	// signal(SIGQUIT, SIG_IGN);//"^\"
+	// signal(SIGINT, sigint_handler);
+	// signal(SIGQUIT, sigint_handler);
 	info->exif_f = 0;
 	info->envp_f = 1;
-	info->status = 0;
+	info->status = 0;//status exit
 	copy_envp(info, envp);
 	envp_list(info);
 	make_commands(info);

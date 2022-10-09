@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:46:33 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/10 15:08:27 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:45:25 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	lexer(t_info *info, char *line)
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if (line[i] == '\\' || line[i] == ';')
 		{
@@ -111,13 +111,5 @@ void	lexer(t_info *info, char *line)
 		check_dollar(&i, info, line);
 		check_redirect(&i, info, line);
 	}
-	// while (info->token)
-	// {
-	// 	printf("key = %d, value = %s\n", ((t_token *)info->token->value)->key, ((t_token *)info->token->value)->value);
-	// 	info->token = info->token->next;
-	// }
 	parser(info);
 }
-
-// препарсер будет проверять на ошибки и валидность (например  ; или | в началае)
-// мой список должен создавать элемет на структуру

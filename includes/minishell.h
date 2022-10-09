@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 19:47:10 by coleta           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:57:24 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int		count_cmds(t_list *params, int p_i);
 void	fill_argv(t_help *help, t_list *tmp, int p_i);
 void	preparser(t_info *info); // ВЕРНУТЬ
 
-
 //executor
 int		executor(t_info *data);
 void	chech_comand(t_comand *c);
@@ -71,8 +70,6 @@ int		count_comand(t_comand *comand);
 void	free_comand(t_comand *comand);
 int		more_cmd(int number_cmd);
 void	cmds_fds(t_comand *cmds, int size);
-
-
 
 //built
 int		ft_builtins(t_comand *comand);
@@ -95,6 +92,7 @@ void	set_env(char *name, char *pach);
 char	*get_env(char *name);
 
 //signal
-void	sigint_handler(int sign_num);
+// void	sigint_handler(int sign_num);
+int	accept_signals(void);
 
 #endif

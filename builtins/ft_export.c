@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/09 14:54:11 by cdoria            #+#    #+#             */
+/*   Updated: 2022/10/09 14:55:25 by cdoria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static void	env_in_export(char *str)
@@ -25,7 +37,7 @@ static void	print_export(void)
 	int		i;
 
 	n = 0;
-	while (info.envp[n] && info.envp)
+	while (g_info.envp[n] && g_info.envp)
 		n++;
 	export = malloc(sizeof(char *) * n);
 	if (!export)
@@ -33,7 +45,7 @@ static void	print_export(void)
 	i = 0;
 	while (i < n)
 	{
-		export[i] = info.envp[i];
+		export[i] = g_info.envp[i];
 		i++;
 	}
 	alph_sorting(export, n);
@@ -46,7 +58,7 @@ static void	print_export(void)
 void	init_p(int *size_name, int *i, char **name, char *new)
 {
 	*i = 0;
-	*name = get_name(new);// можно без malloc !!!
+	*name = get_name(new);
 	*size_name = ft_strlen(*name);
 }
 
@@ -59,24 +71,25 @@ void	add_export(char *new)
 	name = NULL;
 	init_p(&size_name, &i, &name, new);
 	printf(":%s\n", name);
-	while (info.envp[i] && name)
+	while (g_info.envp[i] && name)
 	{
-		if (!ft_strncmp(info.envp[i], name, size_name) \
-		&& (info.envp[i][size_name] == '=' || info.envp[i][size_name] == '\0'))
+		if (!ft_strncmp(g_info.envp[i], name, size_name) \
+		&& (g_info.envp[i][size_name] == '=' \
+			|| g_info.envp[i][size_name] == '\0'))
 		{
 			if (new[index_equals(new) + 1] && ft_strchr(new, '='))
 			{
-				free(info.envp[i]);
-				info.envp[i] = ft_strdup(new);
+				free(g_info.envp[i]);
+				g_info.envp[i] = ft_strdup(new);
 			}
 			free(name);
 			return ;
 		}
 		i++;
 	}
-	info.envp = ft_realloc(info.envp, i * sizeof(char *), \
+	g_info.envp = ft_realloc(g_info.envp, i * sizeof(char *), \
 							(i + 2) * sizeof(char *));
-	info.envp[i] = ft_strdup(new);
+	g_info.envp[i] = ft_strdup(new);
 	free(name);
 }
 
