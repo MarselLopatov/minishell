@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:41:11 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/20 20:02:17 by coleta           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:56:49 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	change_directory(char *pach)
 		return ;
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(pach, 2);
-	info.status = 1;
+	g_info.status = 1;
 	if (stat(pach, &st) == -1)
 		ft_putstr_fd(": No such file or directory", 2);
 	else if (!(st.st_mode & S_IXUSR))
@@ -63,7 +63,7 @@ void	directory_home(char *pach, char *pach_2)
 	}
 	else
 		ft_putstr_fd("cd:, HOME not set\n", 2);
-	info.status = 0;
+	g_info.status = 0;
 }
 
 void	directory_olppwd(char *pach)
@@ -85,7 +85,7 @@ void	ft_cd(char **args)
 	{
 		ft_putstr_fd("cd: ", 2);
 		ft_putstr_fd("too many arguments\n", 2);
-		return ; //ERROR
+		return ;
 	}
 	if (!ft_strncmp(args[0], "-", 2))
 		directory_olppwd(get_env("OLDPWD"));

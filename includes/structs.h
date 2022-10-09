@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:24:45 by cdoria            #+#    #+#             */
-/*   Updated: 2022/06/20 19:39:01 by coleta           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:50:03 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ typedef struct s_list
 	void			*value;
 	struct s_list	*next;
 }					t_list;
-
-
-// typedef struct s_exe
 
 typedef struct s_envp
 {
@@ -56,7 +53,6 @@ typedef struct s_comand
 	char			**args;
 	int				fd_in_out[3];
 	int				fd_close[2];
-	
 	// int				flag_pipe;
 	// char			*redirect_in;
 	// char			*redirect_out;
@@ -79,6 +75,6 @@ typedef struct s_info
 	int					status;
 }						t_info;
 
-t_info	info;
+t_info	g_info;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 19:08:55 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/19 19:29:52 by coleta           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:52:59 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ void	fork_cmd(t_info *data)
 	pid = fork();
 	if (!pid)
 	{
-		chech_comand(data->comand);// предусмотреть ошибку что команда не нашлась
+		chech_comand(data->comand);
 		data->comand->args = add_cmd(data->comand);
-		if (execve(data->comand->args[0], data->comand->args, info.envp) == -1)
-			printf("comand dont work a[0] = %s\ta[1] = %s\n", data->comand->args[0],data->comand->args[1]);//Ошибка execve
+		if (execve(data->comand->args[0], \
+			data->comand->args, g_info.envp) == -1)
+			printf("comand dont work a[0] = %s\ta[1] = %s\n", \
+				data->comand->args[0], data->comand->args[1]);
 	}
 	else if (pid == -1)
 		;//error fork

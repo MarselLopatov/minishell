@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 20:04:29 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/20 21:05:34 by coleta           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:55:49 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	ft_env(char **args)
 		ft_putstr_fd("env: ", 2);
 		ft_putstr_fd(args[0], 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-		return ; //ERROR
+		return ;
 	}
 	i = 0;
-	while (info.envp[i])
+	while (g_info.envp[i])
 	{
-		if (ft_strchr(info.envp[i], '='))
+		if (ft_strchr(g_info.envp[i], '='))
 		{
-			ft_putstr_fd(info.envp[i], 1);
+			ft_putstr_fd(g_info.envp[i], 1);
 			ft_putstr_fd("\n", 1);
 		}
 		i++;

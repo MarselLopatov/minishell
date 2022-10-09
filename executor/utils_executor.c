@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_executor.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/09 14:47:33 by cdoria            #+#    #+#             */
+/*   Updated: 2022/10/09 14:52:31 by cdoria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 void	free_comand(t_comand *comand)
@@ -55,7 +67,7 @@ char	**add_cmd(t_comand *data)
 	if (!copy)
 		return (NULL);
 	copy[i + 1] = 0;
-	while (i != 0  && data->args[i - 1])
+	while (i != 0 && data->args[i - 1])
 	{
 		copy[i] = ft_strdup(data->args[i - 1]);
 		i--;
