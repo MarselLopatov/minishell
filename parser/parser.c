@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 17:07:26 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/12 23:33:56 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:45:08 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ char	**ft_mstrdup(char **s)
 	int		i;
 
 	i = 0;
-	// if (s[0] == NULL)//init argv
-	// 	return (NULL);
 	while (s[i])
 		i++;
 	new = malloc(sizeof(char *) * (i + 2));
@@ -65,7 +63,6 @@ t_comand	*ft_lstnew_c(t_help *content)
 	i = 0;
 	new->cmd = ft_strdup(content->cmd);
 	new->args = ft_mstrdup(content->argv);
-	//реализовать нормальный выбор 
 	new->fd_in_out[0] = 0;
 	if (content->fd)
 		new->fd_in_out[1] = content->fd;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coleta <coleta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 19:08:55 by coleta            #+#    #+#             */
-/*   Updated: 2022/06/19 19:29:52 by coleta           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:52:59 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	status_child(int pid)
 {
 	if (WIFEXITED(pid))
-		info.status = WEXITSTATUS(pid);
+		g_info.status = WEXITSTATUS(pid);
 	if (WIFSIGNALED(pid))
 	{
-		info.status = WTERMSIG(pid);
-		if (info.status != 131)
-			info.status += 128;
+		g_info.status = WTERMSIG(pid);
+		if (g_info.status != 131)
+			g_info.status += 128;
 	}
 }
 
@@ -35,9 +35,10 @@ void	fork_cmd(t_info *data)
 		signal(SIGINT, SIG_DFL);
 		chech_comand(data->comand);
 		data->comand->args = add_cmd(data->comand);
-		if (execve(data->comand->args[0], data->comand->args, info.envp) == -1)
+		if (execve(data->comand->args[0], data->comand->args, g_info.envp) == -1)
 		{
-			printf("comand dont work a[0] = %s\ta[1] = %s\n", data->comand->args[0],data->comand->args[1]);
+			printf("comand dont work a[0] = %s\ta[1] = %s\n", \
+				data->comand->args[0],data->comand->args[1]);
 			exit(127);
 		}
 	}
@@ -74,7 +75,7 @@ void	one_cmd(t_info *data)
 int	executor(t_info *data)
 {
 	// signal(SIGINT, SIG_IGN);
-	info.status = 0;
+	g_info.status = 0;
 	signal(SIGINT, SIG_IGN);
 	if (data->comand->next == NULL)
 		one_cmd(data);

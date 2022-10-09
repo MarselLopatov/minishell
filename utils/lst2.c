@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 18:45:06 by cdoria            #+#    #+#             */
-/*   Updated: 2022/07/10 20:02:58 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:38:35 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_list	*ft_create_help(t_list *token, int p_i)
 	int		counter;
 
 	counter = count_cmds(token, p_i);
-	// printf("%d\n", counter);
 	help = malloc(sizeof(t_help));
 	if (!help)
 		return (NULL);

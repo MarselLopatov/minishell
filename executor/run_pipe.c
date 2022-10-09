@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_pipe.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/09 14:47:29 by cdoria            #+#    #+#             */
+/*   Updated: 2022/10/09 14:56:55 by cdoria           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 void	wait_pid(pid_t *pid, int n)
@@ -33,7 +45,7 @@ void	baby_process(t_comand *data)
 	{
 		chech_comand(data);// предусмотреть ошибку что команда не нашлась
 		data->args = add_cmd(data);
-		if (execve(data->args[0], data->args, info.envp) == -1)
+		if (execve(data->args[0], data->args, g_info.envp) == -1)
 			printf("comand dont work\n");//Ошибка execve
 	}
 	exit(0);
@@ -46,7 +58,7 @@ int	more_cmd(int number_cmd)
 	int			i;
 
 	i = 0;
-	temp = info.comand;
+	temp = g_info.comand;
 	pid = malloc(sizeof(pid_t) * number_cmd);
 	if (!pid)
 		printf("MALLOC ERROR\n");//error pid malloc
