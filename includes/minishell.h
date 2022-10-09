@@ -6,7 +6,7 @@
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:39:36 by cdoria            #+#    #+#             */
-/*   Updated: 2022/10/09 14:57:24 by cdoria           ###   ########.fr       */
+/*   Updated: 2022/10/09 17:54:09 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init(char **enpv, t_info *info);
 
 //lib funcs
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-// size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 t_list	*ft_lstnew(void *value);
 void	ft_pushback(t_list **lst, t_list *elem);
@@ -27,8 +26,6 @@ int		ft_isspace(int c);
 int		ft_isalpha(int c);
 char	*ft_makestr(char *str, int i, int j);
 int		ft_isprint(int c);
-// char	*ft_strchr(const char *s, int c);
-// void	*ft_realloc(void *old, size_t new_size);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *s);
 char	*ft_itoa(int n);
@@ -60,7 +57,12 @@ void	split_tokens(t_info *info);
 int		count_pipes(t_list	*params);
 int		count_cmds(t_list *params, int p_i);
 void	fill_argv(t_help *help, t_list *tmp, int p_i);
-void	preparser(t_info *info); // ВЕРНУТЬ
+void	preparser(t_info *info);
+char	*pull_dollar(char *value);
+char	*pull_quotes(t_list *token);
+void	pull_redir(t_help *help, t_list *token);
+int		count_symb(char *str);
+void	free_parser(t_info *info);
 
 //executor
 int		executor(t_info *data);
@@ -92,7 +94,6 @@ void	set_env(char *name, char *pach);
 char	*get_env(char *name);
 
 //signal
-// void	sigint_handler(int sign_num);
-int	accept_signals(void);
+int		accept_signals(void);
 
 #endif
